@@ -10,9 +10,9 @@ class Course extends Model
     use HasFactory;
 
     protected $fillable = [
-        'اسم الكورس' ,
-	    'وصف الكورس' ,
-	    'السعر' ,
+        'name' ,
+	    'description' ,
+	    'price' ,
 	    'teacher_id' ,
 		'category_id'
     ];

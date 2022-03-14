@@ -11,8 +11,8 @@ class Post extends Model
 
 
     protected $fillable = [
-        'العنوان',
-        'المحتوى',
+        'title',
+        'content',
     ];
 
 

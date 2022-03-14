@@ -15,8 +15,8 @@ class CreateLecturesTable extends Migration
     {
         Schema::create('lectures', function (Blueprint $table) {
             $table->id();
-            $table->string('عنوان المحاضرة');
-			$table->text('وصف المحاضرة');
+            $table->string('title');
+			$table->text('description');
 			$table->foreignId('course_id');
 			$table->bigInteger('index');
 			$table->timestamp('finished_at');

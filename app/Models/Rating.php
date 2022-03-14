@@ -11,7 +11,7 @@ class Rating extends Model
 
     protected $fillable = [
         'ratable_id' ,
-        'نوع التقييم' ,
+        'ratable_type' ,
         'rate' ,
         'user_id'
     ];

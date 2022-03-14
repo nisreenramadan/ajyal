@@ -16,7 +16,7 @@ class CreateRatingsTable extends Migration
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('ratable_id');
-			$table->string('نوع التقييم');
+			$table->string('ratable_type');
 			$table->bigInteger('rate');
 			$table->foreignId('user_id');
             $table->timestamps();

@@ -10,8 +10,8 @@ class Enrollment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'course_id' ,
-	    'user_id'
+        'user_id' ,
+        'course_id'
     ];
 
     public function user()

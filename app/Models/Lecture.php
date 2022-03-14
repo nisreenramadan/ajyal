@@ -10,8 +10,8 @@ class Lecture extends Model
     use HasFactory;
 
     protected $fillable = [
-        'عنوان المحاضرة' ,
-        'وصف المحاضرة' ,
+        'title' ,
+        'description' ,
         'course_id' ,
         'index' ,
         'finished_at'

@@ -10,10 +10,10 @@ class Author extends Model
     use HasFactory;
 
     protected $fillable = [
-        'الأسم الأول' ,
-        'الأسم الأخير' ,
-        'الأيميل' ,
-        'لمحة'
+        'fname' ,
+        'lname' ,
+        'email' ,
+        'bio'
     ];
 
     public function books()
