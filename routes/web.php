@@ -1,5 +1,6 @@
 <?php
-
+use App\Http\Controllers\Admin\PostController as AdminPostController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -61,3 +62,17 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });
 
+
+Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('user', UserController::class, ['except' => ['show']]);
+    Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('profile/password', [ProfileController::class, 'password'])->name('profile.password');
+    Route::resource('posts', AdminPostController::class);
+    //Route::resource('categories', AdminCategoryController::class);
+    //Route::resource('tags', AdminTagController::class);
+    //Route::resource('projects', AdminProjectController::class);
+    //Route::resource('messages', AdminMessageController::class);
+    //Route::resource('settings', SettingController::class);
+});
