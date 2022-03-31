@@ -37,18 +37,19 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $request->validated([
 
             'content'   => 'required',
 
         ]);
+
         $comment = new Comment;
         $comment->content = $request->content;
         $comment->user()->associate($request->user());
         $post = Post::find($request->get('post_id'));
         $post->comments()->save($comment);
 
-        return back();
+        return redirect()->route('admin.posts.show', $post);
     }
 
     /**

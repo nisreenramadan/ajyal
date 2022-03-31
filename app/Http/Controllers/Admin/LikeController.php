@@ -43,7 +43,7 @@ class LikeController extends Controller
         $post = Post::find($request->get('post_id'));
         $post->likes()->save($like);
 
-        return back();
+        return redirect()->route('admin.posts.show', $post);
     }
 
     /**
