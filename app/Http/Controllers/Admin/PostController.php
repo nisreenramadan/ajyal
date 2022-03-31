@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Like;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -44,15 +45,18 @@ class PostController extends Controller
             'title'     => 'required|min:3',
             'content'   => 'required',
             'images'    => 'required|array',
-            'images.*'    => 'required|file|image'
+            'images.*'    => 'required|file|image',
+            'user_id'   => 'required|numeric|exists:users,id',
         ]);
         $post = Post::create($validation);
+        $post->user()->associate($request->user());
         if ($request->hasFile('images')) {
             $fileAdders = $post->addMultipleMediaFromRequest(['images'])
                 ->each(function ($fileAdder) {
                         $fileAdder->toMediaCollection('images');
                     });
                 }
+
         return redirect()->route('admin.posts.index');
     }
 
@@ -64,6 +68,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        //$like = Like::where('post_id', $post->id)->count();
         $mediaItems = $post->getMedia('images');
         return view('admin.posts.show', ['post' => $post , 'mediaItems' => $mediaItems]);
 

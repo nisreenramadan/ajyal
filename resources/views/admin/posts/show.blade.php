@@ -1,65 +1,3 @@
-{{-- @extends('layouts.app', ['activePage' => 'posts', 'titlePage' => __('Posts')])
-
-@section('content')
-    <section class="section">
-        <div class="container">
-            <div class="level">
-                <div class="level-left">
-                    <div>
-                        <h2 class="title is-4">{{ $post->title }}</h2>
-                    </div>
-                </div>
-                <div class="level-right">
-                    <form action="{{ route('admin.posts.destroy', $post) }}" method="POST">
-                        @can('update-post', $post)<a class="button is-primary is-light is-outlined"
-                            href="{{ route('admin.posts.edit', $post) }}">edit</a>@endcan
-                        @csrf
-                        @method('DELETE')
-                        @can('delete posts')
-                            <input class="button is-danger is-light is-outlined" type="submit" value="delete">
-                        @endcan
-                    </form>
-                </div>
-            </div>
-            <p class="block">
-                {{ $post->content }}
-            </p>
-            <p class="block">
-                {{ $post->images }}
-            </p>
-            <hr />
-                    <h4>Display Comments</h4>
-                    @foreach($post->comments as $comment)
-                        <div class="display-comment">
-                            <strong>{{ $comment->user->name }}</strong>
-                            <p>{{ $comment->content }}</p>
-                        </div>
-                    @endforeach
-
-            <hr />
-            <h4>Add comment</h4>
-                    <form method="post" action="{{ route('admin.comments.store') }}">
-                        @csrf
-                        <div class="form-group">
-                            <input type="text" name="comment_body" class="form-control" />
-                            <input type="hidden" name="post_id" value="{{ $post->id }}" />
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-warning" value="Add Comment" />
-                        </div>
-                    </form>
-
-        </div>
-    </section>
-@endsection --}}
-
-
-
-
-
-
-
-
 @extends('layouts.app', ['activePage' => 'posts', 'titlePage' => __('posts')])
 
 @section('content')
@@ -97,21 +35,21 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="alert">
+                                    <div class="col-md-3">
+                                        <div class="alert alert-info">
                                             <span><strong>Title</strong> : <br>
                                                 {{ $post->title }}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="alert">
+                                        <div class="alert alert-info">
                                             <span><strong>Content</strong> : <br>
                                                 {{ $post->content }}</span>
                                         </div>
                                     </div>
                                 </div>
-                                    <div class="col-md-12">
-                                        <div class="alert ">
+                                    <div class="col-md-8">
+                                        <div class="alert alert-info">
                                             <span><strong>Images</strong> : <br>
                                                 <div class="row">
                                                     @foreach ($mediaItems as $mediaItem)
@@ -123,27 +61,64 @@
                                             </span>
                                         </div>
                                     </div>
-                                  <hr />
-                                <h4>Display Comments</h4>
-                             @foreach($post->comments as $comment)
-                               <div class="display-comment">
-                                  <strong>{{ $comment->user->name }}</strong>
-                                   <p>{{ $comment->content }}</p>
-                              </div>
-                             @endforeach
-
-                            <hr />
-                              <h4>Add comment</h4>
-                         <form method="post" action="{{ route('admin.comments.store') }}">
-                              @csrf
-                            <div class="form-group">
-                            <input type="text" name="comment_body" class="form-control" />
-                            <input type="hidden" name="post_id" value="{{ $post->id }}" />
-                            </div>
-                           <div class="form-group">
-                            <input type="submit" class="btn btn-warning" value="Add Comment" />
-                           </div>
-                          </form>
+                                    <div class="col-md-12">
+                                        <div class="alert">
+                                            <span><h3><strong>Display Comments</strong></h3>
+                                                <div class="row">
+                                                    @foreach ($post->comments as $comment)
+                                                        <div class="col-md-4">
+                                                           <h4><strong>{{ $comment->user->name }}</strong></h4>
+                                                            <p>{{ $comment->content }}</p>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="alert">
+                                            <span><h3><strong>Add Comments</strong></h3>
+                                                <form method="post" action="{{ route('admin.comments.store') }}">
+                                                    @csrf
+                                                  <div class="form-group">
+                                                  <input type="text" name="comment_body" class="form-control" />
+                                                  <input type="hidden" name="post_id" value="{{ $post->id }}" />
+                                                  </div>
+                                                 <div class="form-group">
+                                                  <input type="submit" class="btn btn-primary" value="Add Comment" />
+                                                 </div>
+                                                </form>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="alert">
+                                            <span><h3><strong>Display Likes</strong></h3>
+                                                <div class="row">
+                                                    @foreach ($post->likes as $like)
+                                                        <div class="col-md-4">
+                                                           <h4><strong>{{ $like->user->name }}</strong></h4>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    {{-- <div class="col-md-12">
+                                        <div class="alert">
+                                            <span><h3><strong>Like</strong></h3>
+                                                <form method="post" action="{{ route('admin.likes.store') }}">
+                                                    @csrf
+                                                  <div class="form-group">
+                                                  <input type="hidden" name="post_id" value="{{ $post->id }}" />
+                                                  </div>
+                                                 <div class="form-group">
+                                                  <input type="submit" class="btn btn-primary" value="Like" />
+                                                 </div>
+                                                </form>
+                                            </span>
+                                        </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>

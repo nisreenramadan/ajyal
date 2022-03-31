@@ -22,6 +22,9 @@
                                     <thead class=" text-primary">
                                         <tr>
                                             <th>
+                                                Id
+                                            </th>
+                                            <th>
                                                 Title
                                             </th>
                                             <th>
@@ -33,6 +36,9 @@
                                             <th>
                                                 Creation date
                                             </th>
+                                            <th>
+                                                User
+                                            </th>
                                             <th class="text-right">
                                                 Actions
                                             </th>
@@ -41,6 +47,9 @@
                                     <tbody>
                                         @foreach ($posts as $post)
                                             <tr>
+                                                <td>
+                                                    {{ $post->id }}
+                                                </td>
                                                 <td>
                                                     <a
                                                         href="{{ route('admin.posts.show', $post) }}">{{ $post->title }}</a>
@@ -53,6 +62,9 @@
                                                 </td>
                                                 <td>
                                                     {{ $post->created_at }}
+                                                </td>
+                                                <td>
+                                                    {{ $post->user->name }}
                                                 </td>
                                                 <td class="td-actions text-right">
                                                     <form action="{{ route('admin.posts.destroy', $post) }}"

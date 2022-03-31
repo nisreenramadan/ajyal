@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
 			$table->string('scientific_grade')->nullable();
 			$table->string('scientific_certificate')->nullable();
-			$table->bigInteger('age');
+			$table->Integer('age');
             $table->string('email')->unique();
             $table->string('password');
             $table->timestamp('email_verified_at')->nullable();

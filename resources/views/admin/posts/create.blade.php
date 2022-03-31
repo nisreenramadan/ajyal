@@ -87,7 +87,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                               <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                             <div class="card-footer ml-auto mr-auto">
                                 <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
                             </div>

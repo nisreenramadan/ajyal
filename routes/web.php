@@ -72,6 +72,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.'], fu
     Route::put('profile/password', [ProfileController::class, 'password'])->name('profile.password');
     Route::resource('posts', AdminPostController::class);
     Route::resource('comments', AdminCommentController::class);
+    Route::resource('likes', AdminLikeController::class);
     //Route::resource('categories', AdminCategoryController::class);
     //Route::resource('tags', AdminTagController::class);
     //Route::resource('projects', AdminProjectController::class);
