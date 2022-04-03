@@ -11,7 +11,10 @@ class Book extends Model
 
     protected $fillable = [
         'title' ,
-        'category_id'
+        'qoates',
+        'link',
+        'category_id',
+        'author'
     ];
 
 
@@ -20,8 +23,8 @@ class Book extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function authors()
-    {
-        return $this->belongsToMany(Author::class);
-    }
+    // public function authors()
+    // {
+    //     return $this->belongsToMany(Author::class);
+    // }
 }

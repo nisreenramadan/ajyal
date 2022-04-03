@@ -12,8 +12,23 @@ class Course extends Model
     protected $fillable = [
         'name' ,
 	    'description' ,
-	    'price' ,
 	    'teacher_id' ,
-		'category_id'
+		'category_id' ,
     ];
+    public function badges()
+    {
+        return $this->hasMany(Badge::class);
+    }
+    public function students()
+    {
+        return $this->belongsToMany(Student::class);
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+    public function lectures()
+    {
+        return $this->hasMany(Lecture::class);
+    }
 }

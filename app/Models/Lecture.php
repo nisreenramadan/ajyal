@@ -13,8 +13,7 @@ class Lecture extends Model
         'title' ,
         'description' ,
         'course_id' ,
-        'index' ,
-        'finished_at'
+        'sort' ,
     ];
 
     public function course()

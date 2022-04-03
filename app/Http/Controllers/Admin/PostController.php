@@ -110,6 +110,7 @@ class PostController extends Controller
         $post->content = $request->content;
         $post->save();
 
+        $mediaItems = $post->getMedia('images');
         return redirect()->route('admin.posts.index');
     }
 

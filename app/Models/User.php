@@ -19,9 +19,6 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'scientific_grade',
-		'scientific_certificate',
-        'age',
         'email',
         'password',
     ];
@@ -45,28 +42,37 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function posts()
+    public function teacher()
     {
-        return $this->hasMany(Post::class);
+        return $this->hasOne(Teacher::class);
+    }
+    public function student()
+    {
+        return $this->hasOne(Student::class);
     }
 
-    public function likes()
-    {
-        return $this->hasMany(Like::class);
-    }
+    // public function posts()
+    // {
+    //     return $this->hasMany(Post::class);
+    // }
 
-    public function badges()
-    {
-        return $this->belongsToMany(Badge::class);
-    }
+    // public function likes()
+    // {
+    //     return $this->hasMany(Like::class);
+    // }
 
-    public function enrollments()
-    {
-        return $this->hasMany(Enrollment::class);
-    }
+    // public function badges()
+    // {
+    //     return $this->belongsToMany(Badge::class);
+    // }`
 
-    public function courses()
-    {
-        return $this->hasMany(Course::class);
-    }
+    // public function enrollments()
+    // {
+    //     return $this->hasMany(Enrollment::class);
+    // }
+
+    // public function courses()
+    // {
+    //     return $this->hasMany(Course::class);
+    // }
 }
