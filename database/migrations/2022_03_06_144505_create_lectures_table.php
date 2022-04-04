@@ -18,8 +18,7 @@ class CreateLecturesTable extends Migration
             $table->string('title');
 			$table->text('description');
 			$table->foreignId('course_id');
-			$table->bigInteger('index');
-			$table->timestamp('finished_at');
+			$table->bigInteger('sort');
             $table->timestamps();
         });
     }

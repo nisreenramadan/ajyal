@@ -104,7 +104,7 @@
                                             </span>
                                         </div>
                                     </div>
-                                    {{-- <div class="col-md-12">
+                                     <div class="col-md-12">
                                         <div class="alert">
                                             <span><h3><strong>Like</strong></h3>
                                                 <form method="post" action="{{ route('admin.likes.store') }}">
@@ -118,7 +118,7 @@
                                                 </form>
                                             </span>
                                         </div>
-                                    </div> --}}
+                                    </div>
                                 </div>
                             </div>
                         </div>

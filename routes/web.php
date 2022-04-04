@@ -1,6 +1,12 @@
 <?php
-use App\Http\Controllers\Admin\PostController as AdminPostController;
-use App\Http\Controllers\Admin\CommentController as AdminCommentController;
+use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\Admin\LikeController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\TeacherController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -70,12 +76,31 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.'], fu
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('profile/password', [ProfileController::class, 'password'])->name('profile.password');
-    Route::resource('posts', AdminPostController::class);
-    Route::resource('comments', AdminCommentController::class);
-    Route::resource('likes', AdminLikeController::class);
-    //Route::resource('categories', AdminCategoryController::class);
-    //Route::resource('tags', AdminTagController::class);
-    //Route::resource('projects', AdminProjectController::class);
-    //Route::resource('messages', AdminMessageController::class);
-    //Route::resource('settings', SettingController::class);
+    Route::get('users/{user}/password', [UserController::class, 'password'])->name('users.password');
+    Route::put('users/{user}/password', [UserController::class, 'password'])->name('users.password');
+    Route::resource('users', UserController::class);
+    Route::resource('posts', PostController::class);
+    Route::resource('comments', CommentController::class);
+    Route::resource('likes', LikeController::class);
+    Route::resource('courses', CourseController::class);
+    Route::resource('categories', CategoryController::class);
+    Route::resource('teachers', TeacherController::class);
+
 });
+
+// Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], function () {
+//     Route::get('/', [HomeController::class, 'index'])->name('home');
+//     Route::resource('users', UserController::class)->except('show');
+//     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::put('profile/password', [ProfileController::class, 'password'])->name('profile.password');
+
+
+//     Route::get('users/{user}/password', [UserController::class, 'password'])->name('users.password');
+//     Route::put('users/{user}/password', [UserController::class, 'password'])->name('users.password');
+//     Route::resource('users', UserController::class);
+//     Route::resource('posts', PostController::class);
+//     Route::resource('comments', CommentController::class);
+//     Route::resource('likes', LikeController::class);
+
+// });

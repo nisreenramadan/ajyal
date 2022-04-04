@@ -11,7 +11,7 @@ class Like extends Model
 
     protected $fillable = [
         'post_id' ,
-        'user_id'
+        'student_id'
     ];
 
     public function post()
@@ -19,9 +19,9 @@ class Like extends Model
         return $this->belongsTo(Post::class);
     }
 
-    public function user()
+    public function student()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Student::class);
     }
 
 }

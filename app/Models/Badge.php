@@ -11,10 +11,16 @@ class Badge extends Model
 
     protected $fillable = [
         'name' ,
+        'course_id',
+        'student_id',
     ];
 
-    public function users()
+    public function student()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(Student::class);
+    }
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
     }
 }

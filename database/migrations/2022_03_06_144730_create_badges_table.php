@@ -16,6 +16,8 @@ class CreateBadgesTable extends Migration
         Schema::create('badges', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->foreignId('student_id');
+            $table->foreignId('course_id');
             $table->timestamps();
         });
     }
