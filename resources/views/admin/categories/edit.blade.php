@@ -1,30 +1,17 @@
-@extends('layouts.app', ['activePage' => 'category', 'titlePage' => __('New Category')])
-
-@push('css')
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-@endpush
-
-@push('js')
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#summernote').summernote();
-        });
-    </script>
-@endpush
+@extends('layouts.app', ['activePage' => 'posts', 'titlePage' => __('Edit Category')])
 
 @section('content')
     <div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <form method="post" action="{{ route('admin.categories.store') }}" autocomplete="off"
-                        class="form-horizontal" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('admin.categories.update', $category) }}" autocomplete="off"
+                        class="form-horizontal">
                         @csrf
-
+                        @method('put')
                         <div class="card ">
                             <div class="card-header card-header-primary">
-                                <h4 class="card-title">{{ __('Category Information') }}</h4>
+                                <h4 class="card-title">{{ __('Edit Category') }}</h4>
                             </div>
                             <div class="card-body ">
                                 @if (session('status'))
@@ -46,7 +33,7 @@
                                         <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                             <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                                 name="name" id="input-name" type="text"
-                                                placeholder="{{ __('name') }}" value="{{ old('name') }}"
+                                                placeholder="{{ __('name') }}" value="{{ $category->name }}"
                                                 required="true" aria-required="true" />
                                             @if ($errors->has('name'))
                                                 <span id="name" class="error text-danger"
@@ -55,7 +42,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+                            </div>
                             <div class="card-footer ml-auto mr-auto">
                                 <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
                             </div>

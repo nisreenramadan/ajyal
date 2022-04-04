@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'courses', 'titlePage' => __('Courses')])
+@extends('layouts.app', ['activePage' => 'categories', 'titlePage' => __('Categories')])
 
 @section('content')
     <div class="content">
@@ -7,14 +7,14 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title ">{{ __('courses') }}</h4>
-                            <p class="card-category"> Here you can manage courses</p>
+                            <h4 class="card-title ">{{ __('categories') }}</h4>
+                            <p class="card-category"> Here you can manage categories</p>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12 text-right">
-                                    <a href="{{ route('admin.courses.create') }}" class="btn btn-sm btn-primary">Add
-                                        course</a>
+                                    <a href="{{ route('admin.categories.create') }}" class="btn btn-sm btn-primary">Add
+                                        category</a>
                                 </div>
                             </div>
                             <div class="table-responsive">
@@ -28,12 +28,6 @@
                                                Name
                                             </th>
                                             <th>
-                                                Description
-                                            </th>
-                                            <th>
-                                               Teacher
-                                            </th>
-                                            <th>
                                               Created At
                                             </th>
                                             <th class="text-right">
@@ -42,32 +36,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($courses as $course)
+                                        @foreach ($categories as $category)
                                             <tr>
                                                 <td>
-                                                    {{ $course->id }}
+                                                    {{ $category->id }}
                                                 </td>
                                                 <td>
                                                     <a
-                                                        href="{{ route('admin.courses.show', $course) }}">{{ $course->name}}</a>
+                                                        href="{{ route('admin.categories.show', $category) }}">{{ $category->name}}</a>
                                                 </td>
                                                 <td>
-                                                    {{ $course->description }}
-                                                </td>
-                                                <td>
-                                                    {{ $course->teacher->user->name }}
-
-                                                </td>
-                                                <td>
-                                                    {{ $course->created_at }}
+                                                    {{ $category->created_at }}
                                                 </td>
                                                 <td class="td-actions text-right">
-                                                    <form action="{{ route('admin.courses.destroy', $course) }}"
-                                                        method="course">
+                                                    <form action="{{ route('admin.categories.destroy', $category) }}"
+                                                        method="category">
                                                         @csrf
                                                         @method('delete')
                                                         <a rel="tooltip" class="btn btn-success btn-link"
-                                                            href="{{ route('admin.courses.edit', $course) }}"
+                                                            href="{{ route('admin.categories.edit', $category) }}"
                                                             data-original-title="" title="">
                                                             <i class="material-icons">edit</i>
                                                             <div class="ripple-container"></div>

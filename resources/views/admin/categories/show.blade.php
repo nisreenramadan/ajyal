@@ -1,17 +1,4 @@
-@extends('layouts.app', ['activePage' => 'category', 'titlePage' => __('New Category')])
-
-@push('css')
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-@endpush
-
-@push('js')
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#summernote').summernote();
-        });
-    </script>
-@endpush
+@extends('layouts.app', ['activePage' => 'categories', 'titlePage' => __('categories')])
 
 @section('content')
     <div class="content">
@@ -24,7 +11,7 @@
 
                         <div class="card ">
                             <div class="card-header card-header-primary">
-                                <h4 class="card-title">{{ __('Category Information') }}</h4>
+                                <h4 class="card-title">{{ __('category information') }}</h4>
                             </div>
                             <div class="card-body ">
                                 @if (session('status'))
@@ -41,23 +28,20 @@
                                     </div>
                                 @endif
                                 <div class="row">
-                                    <label class="col-sm-2 col-form-label">{{ __('Name') }}</label>
-                                    <div class="col-sm-7">
-                                        <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                            <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                                name="name" id="input-name" type="text"
-                                                placeholder="{{ __('name') }}" value="{{ old('name') }}"
-                                                required="true" aria-required="true" />
-                                            @if ($errors->has('name'))
-                                                <span id="name" class="error text-danger"
-                                                    for="input-name">{{ $errors->first('name') }}</span>
-                                            @endif
+                                    <div class="col-12 text-right">
+                                        <a href="{{ route('admin.categories.edit', $category) }}"
+                                            class="btn btn-sm btn-primary">Edit
+                                            category</a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="alert alert-info">
+                                            <span><strong>Name</strong> : <br>
+                                                {{ $category->name }}</span>
                                         </div>
                                     </div>
                                 </div>
-
-                            <div class="card-footer ml-auto mr-auto">
-                                <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
                             </div>
                         </div>
                     </form>
