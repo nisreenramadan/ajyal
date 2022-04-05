@@ -27,15 +27,14 @@ class Course extends Model
     {
         return $this->belongsTo(Category::class);
     }
-<<<<<<< HEAD
     public function teacher()
     {
         return $this->belongsTo(Teacher::class);
     }
-=======
->>>>>>> 8b1bb7f4e74d2da926784277bf9abdf28c96a48f
+
     public function lectures()
     {
         return $this->hasMany(Lecture::class);
     }
 }
+

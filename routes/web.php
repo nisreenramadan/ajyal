@@ -3,12 +3,9 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\LikeController;
 use App\Http\Controllers\Admin\UserController;
-<<<<<<< HEAD
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\CategoryController;
-=======
->>>>>>> 8b1bb7f4e74d2da926784277bf9abdf28c96a48f
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -85,13 +82,9 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.'], fu
     Route::resource('posts', PostController::class);
     Route::resource('comments', CommentController::class);
     Route::resource('likes', LikeController::class);
-<<<
-<<<< HEAD
     Route::resource('courses', CourseController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('teachers', TeacherController::class);
-=======
->>>>>>> 8b1bb7f4e74d2da926784277bf9abdf28c96a48f
 
 });
 
