@@ -1,27 +1,16 @@
-@extends('layouts.app', ['activePage' => 'teacher', 'titlePage' => __('New Teacher')])
-
-@push('css')
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-@endpush
-
-@push('js')
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#summernote').summernote();
-        });
-    </script>
-@endpush
+@extends('layouts.app' , ['activePage' => 'teachers', 'titlePage' => __('teachers')])
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.6.0/dist/alpine.min.js" defer></script>
 
 @section('content')
     <div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <form method="post" action="{{ route('admin.teachers.store') }}" autocomplete="off"
+                    <h3 class="title is-2">Create New Teacher</h3>
+                    <form method="post" action="{{ route('admin.teachers.update',$teacher) }}" autocomplete="off"
                         class="form-horizontal" enctype="multipart/form-data">
+                        @method('PUT')
                         @csrf
-
                         <div class="card ">
                             <div class="card-header card-header-primary">
                                 <h4 class="card-title">{{ __('Teacher Information') }}</h4>
@@ -46,7 +35,7 @@
                                         <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                             <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                                 name="name" id="input-name" type="text"
-                                                placeholder="{{ __('name') }}" value="{{ old('name') }}"
+                                                placeholder="{{ __('name') }}" value="{{ $teacher->user->name }}"
                                                 required="true" aria-required="true" />
                                             @if ($errors->has('name'))
                                                 <span id="name" class="error text-danger"
@@ -59,27 +48,29 @@
                                     <label class="col-sm-2 col-form-label">{{ __('Email') }}</label>
                                     <div class="col-sm-7">
                                         <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                            <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                               name="email" id="input-email" type="text"
-                                                placeholder="{{ __('email') }}" value="{{ old('email') }}"
-                                                required="true" aria-required="true" />
+                                            <textarea
+                                                class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                                name="email" id="input-email"
+                                                placeholder="{{ __('email') }}"
+                                                required>{{ $teacher->user->email }}</textarea>
                                             @if ($errors->has('email'))
-                                                <span id="email" class="error text-danger"
+                                                <span id="email-error" class="error text-danger"
                                                     for="input-email">{{ $errors->first('email') }}</span>
                                             @endif
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <label class="col-sm-2 col-form-label">{{ __('PassWord') }}</label>
+                                    <label class="col-sm-2 col-form-label">{{ __('Password') }}</label>
                                     <div class="col-sm-7">
                                         <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
-                                            <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                               name="password" id="input-password" type="password"
-                                                placeholder="{{ __('password') }}" value="{{ old('password') }}"
-                                                required="true" aria-required="true" />
+                                            <textarea
+                                                class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                                name="password" id="input-password"
+                                                placeholder="{{ __('password') }}"
+                                                required>{{ $teacher->user->password }}</textarea>
                                             @if ($errors->has('password'))
-                                                <span id="password" class="error text-danger"
+                                                <span id="password-error" class="error text-danger"
                                                     for="input-password">{{ $errors->first('password') }}</span>
                                             @endif
                                         </div>
@@ -89,12 +80,13 @@
                                     <label class="col-sm-2 col-form-label">{{ __('Scientific_Grade') }}</label>
                                     <div class="col-sm-7">
                                         <div class="form-group{{ $errors->has('scientific_grade') ? ' has-danger' : '' }}">
-                                            <input class="form-control{{ $errors->has('scientific_grade') ? ' is-invalid' : '' }}"
-                                               name="scientific_grade" id="input-scientific_grade" type="text"
-                                                placeholder="{{ __('scientific_grade') }}" value="{{ old('scientific_grade') }}"
-                                                required="true" aria-required="true" />
+                                            <textarea
+                                                class="form-control{{ $errors->has('scientific_grade') ? ' is-invalid' : '' }}"
+                                                name="scientific_grade" id="input-scientific_grade"
+                                                placeholder="{{ __('scientific_grade') }}"
+                                                required>{{ $teacher->scientific_grade }}</textarea>
                                             @if ($errors->has('scientific_grade'))
-                                                <span id="scientific_grade" class="error text-danger"
+                                                <span id="scientific_grade-error" class="error text-danger"
                                                     for="input-scientific_grade">{{ $errors->first('scientific_grade') }}</span>
                                             @endif
                                         </div>
@@ -104,22 +96,20 @@
                                     <label class="col-sm-2 col-form-label">{{ __('Scientific_Certificate') }}</label>
                                     <div class="col-sm-7">
                                         <div class="form-group{{ $errors->has('scientific_certificate') ? ' has-danger' : '' }}">
-                                            <input class="form-control{{ $errors->has('scientific_certificate') ? ' is-invalid' : '' }}"
-                                               name="scientific_certificate" id="input-scientific_certificate" type="text"
-                                                placeholder="{{ __('scientific_certificate') }}" value="{{ old('scientific_certificate') }}"
-                                                required="true" aria-required="true" />
+                                            <textarea
+                                                class="form-control{{ $errors->has('scientific_certificate') ? ' is-invalid' : '' }}"
+                                                name="scientific_certificate" id="input-scientific_certificate"
+                                                placeholder="{{ __('scientific_certificate') }}"
+                                                required>{{ $teacher->scientific_certificate }}</textarea>
                                             @if ($errors->has('scientific_certificate'))
-                                                <span id="scientific_certificate" class="error text-danger"
+                                                <span id="scientific_certificate-error" class="error text-danger"
                                                     for="input-scientific_certificate">{{ $errors->first('scientific_certificate') }}</span>
                                             @endif
                                         </div>
                                     </div>
                                 </div>
-
-
-
-                            <div class="card-footer ml-auto mr-auto">
-                                <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+                                <div class="card-footer ml-auto mr-auto">
+                                <button type="submit" class="btn btn-primary">{{ __('Edit Teacher') }}</button>
                             </div>
                         </div>
                     </form>

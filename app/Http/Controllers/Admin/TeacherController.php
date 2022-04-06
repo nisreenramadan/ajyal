@@ -17,7 +17,8 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        //
+        $teachers=Teacher::all();
+        return view('admin.teachers.index',['teachers'=>$teachers]);
     }
 
     /**
@@ -38,7 +39,7 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        $validation = $request->validate([
+           $request->validate([
             'name'     => 'required|string|min:4|max:255',
             'email'    => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
@@ -70,9 +71,9 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Teacher $teacher)
     {
-        //
+        return view('admin.teachers.show',['teacher'=>$teacher]);
     }
 
     /**
@@ -81,9 +82,9 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Teacher $teacher)
     {
-        //
+        return view('admin.teachers.edit',['teacher'=>$teacher]);
     }
 
     /**
@@ -93,9 +94,31 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Teacher $teacher,User $user)
     {
-        //
+        $request->validate([
+            'name'     => 'required|string|min:4|max:255',
+            'email'    => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8',
+            'scientific_grade'          => 'required|string|min:4',
+            'scientific_certificate'    => 'required|string|min:4',
+        ]);
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email= $request->email;
+        $user->password  = Hash::make($request->password);
+        $user->save();
+
+        $teacher = new Teacher();
+        $teacher->scientific_grade = $request->scientific_grade;
+        $teacher->scientific_certificate = $request->scientific_certificate;
+        $teacher->user_id= $user->id;
+        $teacher->save();
+
+
+        return redirect()->route('admin.teachers.index');
+
     }
 
     /**
@@ -104,8 +127,10 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Teacher $teacher)
     {
-        //
+        $teacher->delete();
+
+        return redirect()->route('admin.teachers.index');
     }
 }

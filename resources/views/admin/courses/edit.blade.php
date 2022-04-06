@@ -102,7 +102,7 @@
                                 </div>
                             </div>
                             <div class="card-footer ml-auto mr-auto">
-                                <button type="submit" class="btn btn-primary">{{ __('Edit Post') }}</button>
+                                <button type="submit" class="btn btn-primary">{{ __('Edit Course') }}</button>
                             </div>
                         </div>
                     </form>
