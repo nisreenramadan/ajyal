@@ -1,17 +1,17 @@
-@extends('layouts.app', ['activePage' => 'categories', 'titlePage' => __('categories')])
+@extends('layouts.app', ['activePage' => 'Categories', 'titlePage' => __('Categories')])
 
 @section('content')
     <div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <form method="post" action="{{ route('admin.categories.store') }}" autocomplete="off"
+                    {{-- <form method="post" action="{{ route('admin.categories.store') }}" autocomplete="off"
                         class="form-horizontal" enctype="multipart/form-data">
-                        @csrf
+                        @csrf --}}
 
                         <div class="card ">
                             <div class="card-header card-header-primary">
-                                <h4 class="card-title">{{ __('category information') }}</h4>
+                                <h4 class="card-title">{{ __('Category Information') }}</h4>
                             </div>
                             <div class="card-body ">
                                 @if (session('status'))
@@ -27,13 +27,7 @@
                                         </div>
                                     </div>
                                 @endif
-                                <div class="row">
-                                    <div class="col-12 text-right">
-                                        <a href="{{ route('admin.categories.edit', $category) }}"
-                                            class="btn btn-sm btn-primary">Edit
-                                            category</a>
-                                    </div>
-                                </div>
+
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="alert alert-info">
@@ -44,7 +38,7 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    {{-- </form> --}}
                 </div>
             </div>
         </div>

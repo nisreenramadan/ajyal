@@ -37,7 +37,7 @@
                                                 Creation date
                                             </th>
                                             <th>
-                                                User
+                                                Teacher
                                             </th>
                                             <th class="text-right">
                                                 Actions
@@ -51,8 +51,7 @@
                                                     {{ $post->id }}
                                                 </td>
                                                 <td>
-                                                    <a
-                                                        href="{{ route('admin.posts.show', $post) }}">{{ $post->title }}</a>
+                                                    {{ $post->title }}
                                                 </td>
                                                 <td>
                                                     {{ $post->content }}
@@ -64,12 +63,18 @@
                                                     {{ $post->created_at }}
                                                 </td>
                                                 <td>
-                                                    {{ $post->user->name }}
+                                                    {{ $post->teacher->user->name }}
                                                 </td>
                                                 <td class="td-actions text-right">
                                                     <form action="{{ route('admin.posts.destroy', $post) }}"
                                                         method="post">
                                                         @csrf
+                                                        <a rel="tooltip" class="btn btn-primary btn-link"
+                                                            href="{{ route('admin.posts.show', $post) }}}"
+                                                            data-original-title="" title="">
+                                                            <i class="material-icons">visibility</i>
+                                                            <div class="ripple-container"></div>
+                                                        </a>
                                                         @method('delete')
                                                         <a rel="tooltip" class="btn btn-success btn-link"
                                                             href="{{ route('admin.posts.edit', $post) }}"

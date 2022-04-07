@@ -1,12 +1,12 @@
-@extends('layouts.app', ['activePage' => 'teachers', 'titlePage' => __('Teachers')])
+@extends('layouts.app', ['activePage' => 'Teachers', 'titlePage' => __('Teachers')])
 
 @section('content')
     <div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <form method="post" action="{{ route('admin.teachers.store') }}" autocomplete="off"
-                        class="form-horizontal" enctype="multipart/form-data">
+                    {{-- <form method="post" action="{{ route('admin.teachers.store') }}" autocomplete="off"
+                        class="form-horizontal" enctype="multipart/form-data"> --}}
                         @csrf
 
                         <div class="card ">
@@ -27,13 +27,7 @@
                                         </div>
                                     </div>
                                 @endif
-                                <div class="row">
-                                    <div class="col-12 text-right">
-                                        <a href="{{ route('admin.teachers.edit', $teacher) }}"
-                                            class="btn btn-sm btn-primary">Edit
-                                            teacher</a>
-                                    </div>
-                                </div>
+
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="alert alert-info">
@@ -47,12 +41,7 @@
                                                 {{ $teacher->user->email }}</span>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="alert alert-info">
-                                            <span><strong>Password</strong> : <br>
-                                                {{ $teacher->user->password }}</span>
-                                        </div>
-                                    </div>
+
                                     <div class="col-md-6">
                                         <div class="alert alert-info">
                                             <span><strong>Scientific_Grade</strong> : <br>
@@ -68,7 +57,7 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    {{-- </form> --}}
                 </div>
             </div>
         </div>

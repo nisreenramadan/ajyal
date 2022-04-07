@@ -94,7 +94,7 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Teacher $teacher,User $user)
+    public function update(Request $request, Teacher $teacher)
     {
         $request->validate([
             'name'     => 'required|string|min:4|max:255',
@@ -104,13 +104,13 @@ class TeacherController extends Controller
             'scientific_certificate'    => 'required|string|min:4',
         ]);
 
-        $user = new User();
+        $user= new user();
         $user->name = $request->name;
         $user->email= $request->email;
         $user->password  = Hash::make($request->password);
         $user->save();
 
-        $teacher = new Teacher();
+
         $teacher->scientific_grade = $request->scientific_grade;
         $teacher->scientific_certificate = $request->scientific_certificate;
         $teacher->user_id= $user->id;

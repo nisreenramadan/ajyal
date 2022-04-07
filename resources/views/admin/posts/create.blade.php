@@ -24,7 +24,7 @@
 
                         <div class="card ">
                             <div class="card-header card-header-primary">
-                                <h4 class="card-title">{{ __('Post information') }}</h4>
+                                <h4 class="card-title">{{ __('Post Information') }}</h4>
                             </div>
                             <div class="card-body ">
                                 @if (session('status'))
@@ -87,7 +87,27 @@
                                         </div>
                                     </div>
                                 </div>
-                               <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label">{{ __('Teacher') }}</label>
+                                    <div class="col-sm-7">
+                                        <div class="form-group{{ $errors->has('teacher_id') ? ' has-danger' : '' }}">
+                                            <select
+                                                class="form-control{{ $errors->has('teacher_id') ? ' is-invalid' : '' }}"
+                                                name="teacher_id" id="input-title-ar" type="text"
+                                                placeholder="{{ __('teacher_id') }}" value="{{ old('teacher_id') }}"
+                                                required="true" aria-required="true">
+                                                @foreach ($teachers as $teacher)
+                                                    <option value="{{ $teacher->id }}">{{ $teacher->user->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @if ($errors->has('teacher->id'))
+                                                <span id="title-ar-error" class="error text-danger"
+                                                    for="input-title-ar">{{ $errors->first('teacher->id') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                               {{-- <input type="hidden" name="teacher_id" value="{{ Auth::user()->id }}"> --}}
                             <div class="card-footer ml-auto mr-auto">
                                 <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
                             </div>

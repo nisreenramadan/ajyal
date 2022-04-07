@@ -1,17 +1,13 @@
-@extends('layouts.app', ['activePage' => 'Courses', 'titlePage' => __('Courses')])
+@extends('layouts.app', ['activePage' => 'Books', 'titlePage' => __('Books')])
 
 @section('content')
     <div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <form method="post" action="{{ route('admin.courses.store') }}" autocomplete="off"
-                        class="form-horizontal" enctype="multipart/form-data">
-                        @csrf
-
                         <div class="card ">
                             <div class="card-header card-header-primary">
-                                <h4 class="card-title">{{ __('Course Information') }}</h4>
+                                <h4 class="card-title">{{ __('Book Information') }}</h4>
                             </div>
                             <div class="card-body ">
                                 @if (session('status'))
@@ -31,32 +27,38 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="alert alert-info">
-                                            <span><strong>Name</strong> : <br>
-                                                {{ $course->name }}</span>
+                                            <span><strong>Title</strong> : <br>
+                                                {{ $book->title }}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="alert alert-info">
                                             <span><strong>Description</strong> : <br>
-                                                {{ $course->description }}</span>
+                                                {{ $book->description }}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="alert alert-info">
-                                            <span><strong>Teacher</strong> : <br>
-                                                {{ $course->teacher->user->name }}</span>
+                                            <span><strong>Author</strong> : <br>
+                                                {{ $book->author }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="alert alert-info">
+                                            <span><strong>Link</strong> : <br>
+                                                {{ $book->link }}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="alert alert-info">
                                             <span><strong>Category</strong> : <br>
-                                                {{ $course->category->name }}</span>
+                                                {{ $book->category->name }}</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
+
                 </div>
             </div>
         </div>

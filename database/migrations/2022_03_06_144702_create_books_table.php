@@ -17,7 +17,7 @@ class CreateBooksTable extends Migration
             $table->id();
             $table->string('title');
 			$table->foreignId('category_id');
-            $table->string('qoates');
+            $table->string('description');
             $table->string('link');
             $table->string('author');
             $table->timestamps();

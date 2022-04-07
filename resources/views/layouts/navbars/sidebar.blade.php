@@ -26,57 +26,78 @@
         </a>
         <div class="collapse show" id="laravelExample">
           <ul class="nav">
-            <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('profile.edit') }}">
+            <li class="nav-item{{ $activePage == 'post' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.posts.index') }}">
+                  <span class="sidebar-mini"> UP </span>
+                  <span class="sidebar-normal">{{ __('Manage Post') }} </span>
+                </a>
+              </li>
+
+            <li class="nav-item{{ $activePage == 'course' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.courses.index') }}">
+                  <span class="sidebar-mini"> UP </span>
+                  <span class="sidebar-normal">{{ __('Manage Courses') }} </span>
+                </a>
+              </li>
+            <li class="nav-item{{ $activePage == 'teacher' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('admin.teachers.index') }}">
                 <span class="sidebar-mini"> UP </span>
-                <span class="sidebar-normal">{{ __('User profile') }} </span>
+                <span class="sidebar-normal">{{ __('Manage Teachers') }} </span>
               </a>
             </li>
-            <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('user.index') }}">
+
+            <li class="nav-item{{ $activePage == 'book' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('admin.books.index') }}">
                 <span class="sidebar-mini"> UM </span>
-                <span class="sidebar-normal"> {{ __('User Management') }} </span>
+                <span class="sidebar-normal"> {{ __('Manage Books') }} </span>
+              </a>
+            </li>
+
+            <li class="nav-item{{ $activePage == 'category' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('admin.categories.index') }}">
+                <span class="sidebar-mini"> UM </span>
+                <span class="sidebar-normal"> {{ __('Manage Categories') }} </span>
               </a>
             </li>
           </ul>
         </div>
       </li>
-      <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
+      {{-- <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('table') }}">
           <i class="material-icons">content_paste</i>
             <p>{{ __('Table List') }}</p>
         </a>
-      </li>
-      <li class="nav-item{{ $activePage == 'typography' ? ' active' : '' }}">
+      </li> --}}
+      {{-- <li class="nav-item{{ $activePage == 'typography' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('typography') }}">
           <i class="material-icons">library_books</i>
             <p>{{ __('Typography') }}</p>
         </a>
-      </li>
-      <li class="nav-item{{ $activePage == 'icons' ? ' active' : '' }}">
+      </li> --}}
+      {{-- <li class="nav-item{{ $activePage == 'icons' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('icons') }}">
           <i class="material-icons">bubble_chart</i>
           <p>{{ __('Icons') }}</p>
         </a>
-      </li>
-      <li class="nav-item{{ $activePage == 'map' ? ' active' : '' }}">
+      </li> --}}
+      {{-- <li class="nav-item{{ $activePage == 'map' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('map') }}">
           <i class="material-icons">location_ons</i>
             <p>{{ __('Maps') }}</p>
         </a>
-      </li>
-      <li class="nav-item{{ $activePage == 'notifications' ? ' active' : '' }}">
+      </li> --}}
+      {{-- <li class="nav-item{{ $activePage == 'notifications' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('notifications') }}">
           <i class="material-icons">notifications</i>
           <p>{{ __('Notifications') }}</p>
-        </a>
+        </a> --}}
       </li>
-      <li class="nav-item{{ $activePage == 'language' ? ' active' : '' }}">
+      {{-- <li class="nav-item{{ $activePage == 'language' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('language') }}">
           <i class="material-icons">language</i>
           <p>{{ __('RTL Support') }}</p>
         </a>
-      </li>
+      </li> --}}
       <li class="nav-item active-pro{{ $activePage == 'upgrade' ? ' active' : '' }}">
         <a class="nav-link text-white bg-danger" href="{{ route('upgrade') }}">
           <i class="material-icons text-white">unarchive</i>

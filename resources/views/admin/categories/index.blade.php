@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'categories', 'titlePage' => __('Categories')])
+@extends('layouts.app', ['activePage' => 'Categories', 'titlePage' => __('Categories')])
 
 @section('content')
     <div class="content">
@@ -27,9 +27,7 @@
                                             <th>
                                                Name
                                             </th>
-                                            <th>
-                                              Created At
-                                            </th>
+
                                             <th class="text-right">
                                                 Actions
                                             </th>
@@ -45,14 +43,18 @@
                                                     <a
                                                         href="{{ route('admin.categories.show', $category) }}">{{ $category->name}}</a>
                                                 </td>
-                                                <td>
-                                                    {{ $category->created_at }}
-                                                </td>
+
                                                 <td class="td-actions text-right">
                                                     <form action="{{ route('admin.categories.destroy', $category) }}"
-                                                        method="category">
+                                                        method="post">
                                                         @csrf
                                                         @method('delete')
+                                                        <a rel="tooltip" class="btn btn-primary btn-link"
+                                                        href="{{ route('admin.categories.show', $category) }}"
+                                                        data-original-title="" title="">
+                                                        <i class="material-icons">visibility</i>
+                                                        <div class="ripple-container"></div>
+                                                      </a>
                                                         <a rel="tooltip" class="btn btn-success btn-link"
                                                             href="{{ route('admin.categories.edit', $category) }}"
                                                             data-original-title="" title="">

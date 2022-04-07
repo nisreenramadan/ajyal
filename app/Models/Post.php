@@ -14,11 +14,12 @@ class Post extends Model implements HasMedia
 
     protected $fillable = [
         'title',
-        'content'
+        'content',
+        'teacher_id',
     ];
-    public function user()
+    public function teacher()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Teacher::class);
     }
 
     public function likes()

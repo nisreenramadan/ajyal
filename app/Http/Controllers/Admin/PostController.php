@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Like;
 use App\Models\Post;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -29,7 +30,8 @@ class PostController extends Controller
     public function create()
     {
         //$this->authorize('create', Post::class);
-        return view('admin.posts.create');
+        $teachers=Teacher::all();
+        return view('admin.posts.create',['teachers' => $teachers]);
     }
 
     /**
@@ -46,8 +48,9 @@ class PostController extends Controller
             'content'   => 'required',
             'images'    => 'required|array',
             'images.*'    => 'required|file|image',
-            'user_id'   => 'required',
+            'teacher_id'   => 'required',
         ]);
+        $post = new Post();
         $post = Post::create($validation);
         if ($request->hasFile('images')) {
             $fileAdders = $post->addMultipleMediaFromRequest(['images'])
@@ -55,9 +58,9 @@ class PostController extends Controller
                         $fileAdder->toMediaCollection('images');
                     });
                 }
-         $post = new post();
-         $post->user_id = auth()->id();
-         $post->save();
+        //  $post = new post();
+        //  $post->teacher_id= auth()->id();
+        //  $post->save();
 
         return redirect()->route('admin.posts.index');
     }

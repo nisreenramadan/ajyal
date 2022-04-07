@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'courses', 'titlePage' => __('Courses')])
+@extends('layouts.app', ['activePage' => 'Courses', 'titlePage' => __('Courses')])
 
 @section('content')
     <div class="content">
@@ -14,7 +14,7 @@
                             <div class="row">
                                 <div class="col-12 text-right">
                                     <a href="{{ route('admin.courses.create') }}" class="btn btn-sm btn-primary">Add
-                                        course</a>
+                                        Course</a>
                                 </div>
                             </div>
                             <div class="table-responsive">
@@ -48,8 +48,7 @@
                                                     {{ $course->id }}
                                                 </td>
                                                 <td>
-                                                    <a
-                                                        href="{{ route('admin.courses.show', $course) }}">{{ $course->name}}</a>
+                                                    {{ $course->name}}
                                                 </td>
                                                 <td>
                                                     {{ $course->description }}
@@ -63,23 +62,31 @@
                                                 </td>
                                                 <td class="td-actions text-right">
                                                     <form action="{{ route('admin.courses.destroy', $course) }}"
-                                                        method="course">
+                                                        method="post">
                                                         @csrf
                                                         @method('delete')
-                                                        <a rel="tooltip" class="btn btn-success btn-link"
-                                                            href="{{ route('admin.courses.edit', $course) }}"
-                                                            data-original-title="" title="">
-                                                            <i class="material-icons">edit</i>
-                                                            <div class="ripple-container"></div>
+                                                        <a rel="tooltip" class="btn btn-primary btn-link"
+                                                        href="{{ route('admin.courses.show', $course) }}"
+                                                        data-original-title="" title="">
+                                                        <i class="material-icons">visibility</i>
+                                                        <div class="ripple-container"></div>
+                                                      </a>
+                                                      <a rel="tooltip" class="btn btn-success btn-link"
+                                                        href="{{ route('admin.courses.edit', $course) }}"
+                                                        data-original-title="" title="">
+                                                        <i class="material-icons">edit</i>
+                                                        <div class="ripple-container"></div>
                                                         </a>
                                                         <button type="submit" rel="tooltip" class="btn btn-danger btn-link"
                                                             data-original-title="" title="">
                                                             <i class="material-icons">delete</i>
                                                             <div class="ripple-container"></div>
                                                         </button>
-
                                                     </form>
+
                                                 </td>
+
+
                                             </tr>
                                         @endforeach
                                     </tbody>

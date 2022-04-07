@@ -11,7 +11,7 @@ class Book extends Model
 
     protected $fillable = [
         'title' ,
-        'qoates',
+        'description',
         'link',
         'category_id',
         'author'

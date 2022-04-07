@@ -1,4 +1,4 @@
-@extends('layouts.app' , ['activePage' => 'teachers', 'titlePage' => __('teachers')])
+@extends('layouts.app' , ['activePage' => 'Teachers', 'titlePage' => __('Teachers')])
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.6.0/dist/alpine.min.js" defer></script>
 
 @section('content')
@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="title is-2">Create New Teacher</h3>
+                    <h3 class="title is-2">Edit Teacher</h3>
                     <form method="post" action="{{ route('admin.teachers.update',$teacher) }}" autocomplete="off"
                         class="form-horizontal" enctype="multipart/form-data">
                         @method('PUT')

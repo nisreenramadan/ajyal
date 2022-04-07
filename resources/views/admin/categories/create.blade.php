@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'category', 'titlePage' => __('New Category')])
+@extends('layouts.app', ['activePage' => 'Category', 'titlePage' => __('New Category')])
 
 @push('css')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">

@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\LikeController;
@@ -85,6 +87,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.'], fu
     Route::resource('courses', CourseController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('teachers', TeacherController::class);
+    Route::resource('books', BookController::class);
 
 });
 

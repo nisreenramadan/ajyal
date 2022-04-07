@@ -1,4 +1,4 @@
-@extends('layouts.app' , ['activePage' => 'Courses', 'titlePage' => __('Courses')])
+@extends('layouts.app' , ['activePage' => 'Books', 'titlePage' => __('Books')])
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.6.0/dist/alpine.min.js" defer></script>
 
 @section('content')
@@ -6,14 +6,14 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="title is-2">Edit Course</h3>
-                    <form method="post" action="{{ route('admin.courses.update',$course) }}" autocomplete="off"
+                    <h3 class="title is-2">Edit New Book</h3>
+                    <form method="post" action="{{ route('admin.books.update',$book) }}" autocomplete="off"
                         class="form-horizontal" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="card ">
                             <div class="card-header card-header-primary">
-                                <h4 class="card-title">{{ __('Course Information') }}</h4>
+                                <h4 class="card-title">{{ __('Book information') }}</h4>
                             </div>
                             <div class="card-body ">
                                 @if (session('status'))
@@ -30,16 +30,16 @@
                                     </div>
                                 @endif
                                 <div class="row">
-                                    <label class="col-sm-2 col-form-label">{{ __('Name') }}</label>
+                                    <label class="col-sm-2 col-form-label">{{ __('Title') }}</label>
                                     <div class="col-sm-7">
-                                        <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                            <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                                name="name" id="input-name" type="text"
-                                                placeholder="{{ __('name') }}" value="{{ $course->name }}"
+                                        <div class="form-group{{ $errors->has('title') ? ' has-danger' : '' }}">
+                                            <input class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}"
+                                                name="title" id="input-title" type="text"
+                                                placeholder="{{ __('title') }}" value="{{ $book->title }}"
                                                 required="true" aria-required="true" />
-                                            @if ($errors->has('name'))
-                                                <span id="name" class="error text-danger"
-                                                    for="input-name">{{ $errors->first('name') }}</span>
+                                            @if ($errors->has('title'))
+                                                <span id="title" class="error text-danger"
+                                                    for="input-title">{{ $errors->first('title') }}</span>
                                             @endif
                                         </div>
                                     </div>
@@ -52,10 +52,42 @@
                                                 class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
                                                 name="description" id="input-description"
                                                 placeholder="{{ __('description') }}"
-                                                required>{{ $course->description }}</textarea>
+                                                required>{{ $book->description }}</textarea>
                                             @if ($errors->has('description'))
                                                 <span id="description-error" class="error text-danger"
                                                     for="input-description">{{ $errors->first('description') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label">{{ __('Link') }}</label>
+                                    <div class="col-sm-7">
+                                        <div class="form-group{{ $errors->has('link') ? ' has-danger' : '' }}">
+                                            <textarea
+                                                class="form-control{{ $errors->has('link') ? ' is-invalid' : '' }}"
+                                                name="link" id="input-link"
+                                                placeholder="{{ __('link') }}"
+                                                required>{{ $book->link }}</textarea>
+                                            @if ($errors->has('link'))
+                                                <span id="link-error" class="error text-danger"
+                                                    for="input-link">{{ $errors->first('link') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label">{{ __('Author') }}</label>
+                                    <div class="col-sm-7">
+                                        <div class="form-group{{ $errors->has('author') ? ' has-danger' : '' }}">
+                                            <textarea
+                                                class="form-control{{ $errors->has('author') ? ' is-invalid' : '' }}"
+                                                name="author" id="input-author"
+                                                placeholder="{{ __('author') }}"
+                                                required>{{ $book->author }}</textarea>
+                                            @if ($errors->has('author'))
+                                                <span id="author-error" class="error text-danger"
+                                                    for="input-author">{{ $errors->first('author') }}</span>
                                             @endif
                                         </div>
                                     </div>
@@ -80,29 +112,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <label class="col-sm-2 col-form-label">{{ __('Teacher') }}</label>
-                                    <div class="col-sm-7">
-                                        <div class="form-group{{ $errors->has('teacher_id') ? ' has-danger' : '' }}">
-                                            <select
-                                                class="form-control{{ $errors->has('teacher_id') ? ' is-invalid' : '' }}"
-                                                name="teacher_id" id="input-title-ar" type="text"
-                                                placeholder="{{ __('teacher') }}" value="{{ old('teacher_id') }}"
-                                                required="true" aria-required="true">
-                                                @foreach ($teachers as $teacher)
-                                                    <option value="{{ $teacher->id }}">{{ $teacher->user->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @if ($errors->has('teacher_id'))
-                                                <span id="title-ar-error" class="error text-danger"
-                                                    for="input-title-ar">{{ $errors->first('teacher_id') }}</span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
                             <div class="card-footer ml-auto mr-auto">
-                                <button type="submit" class="btn btn-primary">{{ __('Edit Course') }}</button>
+                                <button type="submit" class="btn btn-primary">{{ __('Edit Book') }}</button>
                             </div>
                         </div>
                     </form>

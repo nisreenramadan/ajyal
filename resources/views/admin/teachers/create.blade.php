@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'teacher', 'titlePage' => __('New Teacher')])
+@extends('layouts.app', ['activePage' => 'Teacher', 'titlePage' => __('New Teacher')])
 
 @push('css')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">

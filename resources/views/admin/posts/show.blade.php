@@ -5,10 +5,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <form method="post" action="{{ route('admin.posts.store') }}" autocomplete="off"
-                        class="form-horizontal" enctype="multipart/form-data">
                         @csrf
-
                         <div class="card ">
                             <div class="card-header card-header-primary">
                                 <h4 class="card-title">{{ __('post information') }}</h4>
@@ -27,13 +24,6 @@
                                         </div>
                                     </div>
                                 @endif
-                                <div class="row">
-                                    <div class="col-12 text-right">
-                                        <a href="{{ route('admin.posts.edit', $post) }}"
-                                            class="btn btn-sm btn-primary">Edit
-                                            post</a>
-                                    </div>
-                                </div>
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="alert alert-info">
@@ -61,7 +51,13 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
+                                        <div class="alert alert-info">
+                                            <span><strong>Teacher</strong> : <br>
+                                                {{ $post->teacher->user->name }}</span>
+                                        </div>
+                                    </div>
+                                    {{-- <div class="col-md-12">
                                         <div class="alert">
                                             <span><h3><strong>Display Comments</strong></h3>
                                                 <div class="row">
@@ -118,7 +114,7 @@
                                                 </form>
                                             </span>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>

@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'post-create', 'titlePage' => __('New Post')])
+@extends('layouts.app', ['activePage' => 'Course', 'titlePage' => __('New Course')])
 
 @push('css')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
