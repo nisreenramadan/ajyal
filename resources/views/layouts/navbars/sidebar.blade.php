@@ -28,37 +28,43 @@
           <ul class="nav">
             <li class="nav-item{{ $activePage == 'post' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.posts.index') }}">
-                  <span class="sidebar-mini"> UP </span>
+                  <i><i class="material-icons">description</i></i>
                   <span class="sidebar-normal">{{ __('Manage Post') }} </span>
                 </a>
               </li>
 
             <li class="nav-item{{ $activePage == 'course' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.courses.index') }}">
-                  <span class="sidebar-mini"> UP </span>
+                    <i><i class="material-icons">cast_for_education</i></i>
                   <span class="sidebar-normal">{{ __('Manage Courses') }} </span>
                 </a>
               </li>
             <li class="nav-item{{ $activePage == 'teacher' ? ' active' : '' }}">
               <a class="nav-link" href="{{ route('admin.teachers.index') }}">
-                <span class="sidebar-mini"> UP </span>
+                <i><i class="material-icons">person</i></i>
                 <span class="sidebar-normal">{{ __('Manage Teachers') }} </span>
               </a>
             </li>
 
             <li class="nav-item{{ $activePage == 'book' ? ' active' : '' }}">
               <a class="nav-link" href="{{ route('admin.books.index') }}">
-                <span class="sidebar-mini"> UM </span>
+                <i><i class="material-icons">book</i></i>
                 <span class="sidebar-normal"> {{ __('Manage Books') }} </span>
               </a>
             </li>
 
             <li class="nav-item{{ $activePage == 'category' ? ' active' : '' }}">
               <a class="nav-link" href="{{ route('admin.categories.index') }}">
-                <span class="sidebar-mini"> UM </span>
+                <i><i class="material-icons">category</i></i>
                 <span class="sidebar-normal"> {{ __('Manage Categories') }} </span>
               </a>
             </li>
+            <li class="nav-item{{ $activePage == 'student' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.students.index') }}">
+                  <i><i class="material-icons">person</i></i>
+                  <span class="sidebar-normal"> {{ __('Manage student') }} </span>
+                </a>
+              </li>
           </ul>
         </div>
       </li>
