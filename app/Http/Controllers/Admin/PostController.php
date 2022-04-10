@@ -73,7 +73,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $post->likes()->count();
+        // $post->likes()->count();
         $mediaItems = $post->getMedia('images');
         return view('admin.posts.show', ['post' => $post , 'mediaItems' => $mediaItems]);
 

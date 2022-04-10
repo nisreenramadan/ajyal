@@ -57,7 +57,7 @@
                                                     {{ $post->content }}
                                                 </td>
                                                 <td>
-                                                    <img src="{{$post->getFirstMediaUrl('images')}}" / width="120px">
+                                                    <img src="{{$post->getFirstMediaUrl('images')}}"  width="1000px">
                                                 </td>
                                                 <td>
                                                     {{ $post->created_at }}

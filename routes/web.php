@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\LectureController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
@@ -90,6 +91,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.'], fu
     Route::resource('teachers', TeacherController::class);
     Route::resource('books', BookController::class);
     Route::resource('students', StudentController::class);
+    Route::resource('lectures', LectureController::class);
 
 });
 // Route::group(['middleware' => 'auth', 'prefix' => 'teacher', 'as' => 'admin.'], function () {

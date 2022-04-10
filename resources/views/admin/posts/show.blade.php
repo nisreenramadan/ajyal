@@ -44,7 +44,7 @@
                                                 <div class="row">
                                                     @foreach ($mediaItems as $mediaItem)
                                                         <div class="col-md-4">
-                                                            <img src="{{ $mediaItem->getUrl() }}" / width="240px">
+                                                            <img src="{{ $mediaItem->getUrl() }}"  width="1000">
                                                         </div>
                                                     @endforeach
                                                 </div>

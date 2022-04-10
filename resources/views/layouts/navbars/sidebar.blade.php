@@ -39,6 +39,12 @@
                   <span class="sidebar-normal">{{ __('Manage Courses') }} </span>
                 </a>
               </li>
+              <li class="nav-item{{ $activePage == 'lecture' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.lectures.index') }}">
+                    <i><i class="material-icons">smart_display</i></i>
+                  <span class="sidebar-normal">{{ __('Manage Lectures') }} </span>
+                </a>
+              </li>
             <li class="nav-item{{ $activePage == 'teacher' ? ' active' : '' }}">
               <a class="nav-link" href="{{ route('admin.teachers.index') }}">
                 <i><i class="material-icons">person</i></i>
@@ -48,7 +54,7 @@
 
             <li class="nav-item{{ $activePage == 'book' ? ' active' : '' }}">
               <a class="nav-link" href="{{ route('admin.books.index') }}">
-                <i><i class="material-icons">book</i></i>
+                <i><i class="material-icons">library_books</i></i>
                 <span class="sidebar-normal"> {{ __('Manage Books') }} </span>
               </a>
             </li>
