@@ -36,9 +36,9 @@
                                             <th>
                                                Course
                                             </th>
-                                            <th>
+                                            {{-- <th>
                                                 Video
-                                             </th>
+                                             </th> --}}
                                             <th>
                                               Created At
                                             </th>
@@ -66,9 +66,11 @@
                                                     {{ $lecture->course->name }}
 
                                                 </td>
-                                                <td>
-                                                    <source src="{{$lecture->getFirstMediaUrl('videos')}}" type="video/mp4" width="1000">
-                                                </td>
+                                                {{-- <td>
+                                                    <video type="video/mp4" autoplay controls>
+                                                        <source src="{{$lecture->getFirstMediaUrl('videos')}}" >
+                                                    </video>
+                                                </td> --}}
                                                 <td>
                                                     {{ $lecture->created_at }}
                                                 </td>

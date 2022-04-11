@@ -91,6 +91,22 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <label class="col-sm-2 col-form-label">{{ __('Files') }}</label>
+                                    <div class="col-sm-7">
+                                        <div class="custom-file {{ $errors->has('files') ? ' has-danger' : '' }}">
+                                            <input
+                                                class="form-control file{{ $errors->has('files') ? ' is-invalid' : '' }}"
+                                                name="files[]" id="input-files" type="file" multiple="multiple"
+                                                placeholder="{{ __('Upload files') }}" value="{{ old('files') }}"
+                                                required="true" aria-required="true" />
+                                            @if ($errors->has('files'))
+                                                <span id="files-error" class="error text-danger"
+                                                    for="input-files">{{ $errors->first('files') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <label class="col-sm-2 col-form-label">{{ __('Link') }}</label>
                                     <div class="col-sm-7">
                                         <div class="form-group{{ $errors->has('link') ? ' has-danger' : '' }}">

@@ -44,7 +44,7 @@
                                                 <div class="row">
                                                     @foreach ($mediaItems as $mediaItem)
                                                         <div class="col-md-4">
-                                                            <img src="{{ $mediaItem->getUrl() }}"  width="1000">
+                                                            <img src="{{ $mediaItem->getUrl() }}"  width="100">
                                                         </div>
                                                     @endforeach
                                                 </div>
@@ -74,11 +74,10 @@
                                     <div class="col-md-12">
                                         <div class="alert">
                                             <span><h3><strong>Add Comments</strong></h3>
-                                                <form method="post" action="{{ route('admin.comments.store') }}">
+                                                <form method="post" action="{{ route('admin.posts.comments.store', ['post' => $post]) }}">
                                                     @csrf
                                                   <div class="form-group">
                                                   <input type="text" name="comment_body" class="form-control" />
-                                                  <input type="hidden" name="post_id" value="{{ $post->id }}" />
                                                   </div>
                                                  <div class="form-group">
                                                   <input type="submit" class="btn btn-primary" value="Add Comment" />
@@ -91,7 +90,7 @@
                                         <div class="alert">
                                             <span><h3><strong>Display Likes</strong></h3>
                                                 <div class="row">
-                                                    @foreach ($post->likes as $like)
+                                                    @foreach ($post->likes_count as $like)
                                                         <div class="col-md-4">
                                                            <h4><strong>{{ $like->user->name }}</strong></h4>
                                                         </div>
@@ -103,11 +102,8 @@
                                      <div class="col-md-12">
                                         <div class="alert">
                                             <span><h3><strong>Like</strong></h3>
-                                                <form method="post" action="{{ route('admin.likes.store') }}">
+                                                <form method="post" action="{{  route('admin.posts.likes.store', ['post' => $post]) }}">
                                                     @csrf
-                                                  <div class="form-group">
-                                                  <input type="hidden" name="post_id" value="{{ $post->id }}" />
-                                                  </div>
                                                  <div class="form-group">
                                                   <input type="submit" class="btn btn-primary" value="Like" />
                                                  </div>

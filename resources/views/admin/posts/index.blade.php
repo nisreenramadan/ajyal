@@ -30,9 +30,9 @@
                                             <th>
                                                 Content
                                             </th>
-                                            <th>
+                                            {{-- <th>
                                                 Image
-                                            </th>
+                                            </th> --}}
                                             <th>
                                                 Creation date
                                             </th>
@@ -56,9 +56,9 @@
                                                 <td>
                                                     {{ $post->content }}
                                                 </td>
-                                                <td>
+                                                {{-- <td>
                                                     <img src="{{$post->getFirstMediaUrl('images')}}"  width="1000px">
-                                                </td>
+                                                </td> --}}
                                                 <td>
                                                     {{ $post->created_at }}
                                                 </td>

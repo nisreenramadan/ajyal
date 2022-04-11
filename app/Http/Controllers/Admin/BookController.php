@@ -48,6 +48,13 @@ class BookController extends Controller
         ]);
          $book = new Book();
         $book= Book::create($validation);
+        if ($request->hasFile('files')) {
+            $fileAdders = $book->addMultipleMediaFromRequest(['files'])
+                ->each(function ($fileAdder) {
+                        $fileAdder->toMediaCollection('files');
+                    });
+                }
+
         return redirect()->route('admin.books.index');
     }
 
@@ -59,7 +66,8 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        return view('admin.books.show', ['book' => $book ]);
+        $mediaItems = $book->getMedia('files');
+        return view('admin.books.show', ['book' => $book ,'mediaItems' => $mediaItems]);
     }
 
     /**

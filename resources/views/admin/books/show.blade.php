@@ -55,6 +55,17 @@
                                                 {{ $book->category->name }}</span>
                                         </div>
                                     </div>
+                                    <div class="col-md-8">
+                                        <div class="alert alert-info">
+                                            <span><strong>Files</strong> : <br>
+                                                <div class="row">
+                                                    @foreach ($mediaItems as $mediaItem)
+                                                        <iframe src="{{ $mediaItem->getUrl() }}" height="300" width="500"></iframe>
+                                                    @endforeach
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

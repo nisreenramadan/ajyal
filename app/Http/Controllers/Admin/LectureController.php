@@ -68,7 +68,8 @@ class LectureController extends Controller
      */
     public function show(Lecture $lecture)
     {
-        return view('admin.lectures.show', ['lecture' => $lecture ]);
+        $mediaItems = $lecture->getMedia('videos');
+        return view('admin.lectures.show', ['lecture' => $lecture ,'mediaItems' => $mediaItems]);
     }
 
     /**

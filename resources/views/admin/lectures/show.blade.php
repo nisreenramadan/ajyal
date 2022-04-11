@@ -53,6 +53,19 @@
                                                 {{ $lecture->course->name }}</span>
                                         </div>
                                     </div>
+                                    <div class="col-md-8">
+                                        <div class="alert alert-info">
+                                            <span><strong>Videos</strong> : <br>
+                                                <div class="row">
+                                                    @foreach ($mediaItems as $mediaItem)
+                                                        <video type="video/mp4" width="500" autoplay controls>
+                                                            <source src="{{ $mediaItem->getUrl() }}">
+                                                        </video>
+                                                    @endforeach
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
