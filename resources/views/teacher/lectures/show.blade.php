@@ -5,8 +5,8 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <form method="post" action="{{ route('admin.lectures.store') }}" autocomplete="off"
-                        class="form-horizontal" enctype="multipart/form-data">
+                    {{-- <form method="post" action="{{ route('teacher.lectures.store') }}" autocomplete="off"
+                        class="form-horizontal" enctype="multipart/form-data"> --}}
                         @csrf
 
                         <div class="card ">
@@ -69,7 +69,7 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    {{-- </form> --}}
                 </div>
             </div>
         </div>

@@ -13,7 +13,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12 text-right">
-                                    <a href="{{ route('admin.posts.create') }}" class="btn btn-sm btn-primary">Add
+                                    <a href="{{ route('teacher.posts.create') }}" class="btn btn-sm btn-primary">Add
                                         post</a>
                                 </div>
                             </div>
@@ -66,18 +66,18 @@
                                                     {{ $post->teacher->user->name }}
                                                 </td>
                                                 <td class="td-actions text-right">
-                                                    <form action="{{ route('admin.posts.destroy', $post) }}"
+                                                    <form action="{{ route('teacher.posts.destroy', $post) }}"
                                                         method="post">
                                                         @csrf
                                                         <a rel="tooltip" class="btn btn-primary btn-link"
-                                                            href="{{ route('admin.posts.show', $post) }}}"
+                                                            href="{{ route('teacher.posts.show', $post) }}}"
                                                             data-original-title="" title="">
                                                             <i class="material-icons">visibility</i>
                                                             <div class="ripple-container"></div>
                                                         </a>
                                                         @method('delete')
                                                         <a rel="tooltip" class="btn btn-success btn-link"
-                                                            href="{{ route('admin.posts.edit', $post) }}"
+                                                            href="{{ route('teacher.posts.edit', $post) }}"
                                                             data-original-title="" title="">
                                                             <i class="material-icons">edit</i>
                                                             <div class="ripple-container"></div>

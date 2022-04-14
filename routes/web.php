@@ -1,14 +1,14 @@
 <?php
 
 use App\Http\Controllers\Admin\BookController;
-use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Teacher\PostController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\LikeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\LectureController;
+use App\Http\Controllers\Teacher\LectureController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
@@ -83,7 +83,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.'], fu
     Route::get('users/{user}/password', [UserController::class, 'password'])->name('users.password');
     Route::put('users/{user}/password', [UserController::class, 'password'])->name('users.password');
     Route::resource('users', UserController::class);
-    Route::resource('posts', PostController::class);
     Route::resource('comments', CommentController::class);
     Route::resource('likes', LikeController::class);
     Route::resource('courses', CourseController::class);
@@ -91,10 +90,12 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.'], fu
     Route::resource('teachers', TeacherController::class);
     Route::resource('books', BookController::class);
     Route::resource('students', StudentController::class);
-    Route::resource('lectures', LectureController::class);
+
 
 });
-// Route::group(['middleware' => 'auth', 'prefix' => 'teacher', 'as' => 'admin.'], function () {
-//     Route::resource('lectures', LectureController::class);
+Route::group(['middleware' => 'auth', 'prefix' => 'teacher', 'as' => 'teacher.'], function () {
+    Route::resource('lectures', LectureController::class);
+    Route::resource('posts', PostController::class);
 
-// });
+
+});

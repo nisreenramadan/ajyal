@@ -19,7 +19,7 @@
                 </a>
             </li>
             <li class="nav-item{{ $activePage == 'Posts' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.posts.index') }}">
+                <a class="nav-link" href="{{ route('teacher.posts.index') }}">
                     <i class="material-icons">description</i>
                     <p>{{ __('Manage posts') }}</p>
                 </a>
@@ -31,7 +31,7 @@
                 </a>
             </li>
             <li class="nav-item{{ $activePage == 'Lectures' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.lectures.index') }}">
+                <a class="nav-link" href="{{ route('teacher.lectures.index') }}">
                     <i class="material-icons">smart_display</i>
                     <p>{{ __('Manage Lectures') }}</p>
                 </a>
