@@ -95,11 +95,6 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="row">
-                                <div class="col-3 text-center m-auto">
-                                    {{ $posts->links('pagination::bootstrap-4') }}
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

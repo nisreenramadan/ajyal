@@ -2,8 +2,6 @@
 
 use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Teacher\PostController;
-use App\Http\Controllers\Admin\CommentController;
-use App\Http\Controllers\Admin\LikeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\TeacherController;
@@ -11,6 +9,9 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Teacher\LectureController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Student\PostCommentController;
+use App\Http\Controllers\Student\PostController as StudentPostController;
+use App\Http\Controllers\Student\PostLikeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -83,8 +84,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.'], fu
     Route::get('users/{user}/password', [UserController::class, 'password'])->name('users.password');
     Route::put('users/{user}/password', [UserController::class, 'password'])->name('users.password');
     Route::resource('users', UserController::class);
-    Route::resource('comments', CommentController::class);
-    Route::resource('likes', LikeController::class);
     Route::resource('courses', CourseController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('teachers', TeacherController::class);
@@ -96,6 +95,14 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.'], fu
 Route::group(['middleware' => 'auth', 'prefix' => 'teacher', 'as' => 'teacher.'], function () {
     Route::resource('lectures', LectureController::class);
     Route::resource('posts', PostController::class);
+
+
+});
+
+Route::group(['middleware' => 'auth', 'prefix' => 'student', 'as' => 'student.'], function () {
+    Route::resource('posts', StudentPostController::class);
+    Route::resource('posts.comments', PostCommentController::class);
+    Route::resource('posts.likes', PostLikeController::class);
 
 
 });

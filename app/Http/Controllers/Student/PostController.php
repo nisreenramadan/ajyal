@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
-use App\Models\comment;
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
-class CommentController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,8 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::all();
+        return view('teacher.posts.index',['posts'=>$posts]);
     }
 
     /**
@@ -37,39 +38,29 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validated([
-
-            'content'   => 'required',
-
-        ]);
-
-        $comment = new Comment;
-        $comment->content = $request->content;
-        $comment->user()->associate($request->user());
-        $post = Post::find($request->get('post_id'));
-        $post->comments()->save($comment);
-
-        return redirect()->route('admin.posts.show', $post);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\comment  $comment
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(comment $comment)
+    public function show(Post $post)
     {
-        //
+        // $post->likes()->count();
+        $mediaItems = $post->getMedia('images');
+        return view('student.posts.show', ['post' => $post ,'mediaItems' => $mediaItems]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\comment  $comment
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(comment $comment)
+    public function edit($id)
     {
         //
     }
@@ -78,10 +69,10 @@ class CommentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\comment  $comment
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, comment $comment)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -89,12 +80,11 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\comment  $comment
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(comment $comment)
+    public function destroy($id)
     {
-        $comment->delete();
-        return redirect()->back();
+        //
     }
 }

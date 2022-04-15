@@ -1,20 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Models\Like;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
-class LikeController extends Controller
+class PostLikeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Post $post)
     {
         //
     }
@@ -22,9 +23,10 @@ class LikeController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Post $post)
     {
         //
     }
@@ -33,26 +35,34 @@ class LikeController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
+        $validation = $request->validate([
+            'post_id'   => 'required',
+            'student_id'   => 'required',
+        ]);
+        //  $course = new Like();
+        // $course= Like::create($validation);
 
         $like = new Like();
-        $like->user()->associate($request->user());
+        $like->student()->associate($request->student());
         $post = Post::find($request->get('post_id'));
         $post->likes()->save($like);
 
-        return redirect()->route('admin.posts.show', $post);
+        return redirect()->route('student.posts.show', $post);
     }
 
     /**
      * Display the specified resource.
      *
+     * @param  \App\Models\Post  $post
      * @param  \App\Models\Like  $like
      * @return \Illuminate\Http\Response
      */
-    public function show(Like $like)
+    public function show(Post $post, Like $like)
     {
         //
     }
@@ -60,10 +70,11 @@ class LikeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     * @param  \App\Models\Post  $post
      * @param  \App\Models\Like  $like
      * @return \Illuminate\Http\Response
      */
-    public function edit(Like $like)
+    public function edit(Post $post, Like $like)
     {
         //
     }
@@ -72,10 +83,11 @@ class LikeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Post  $post
      * @param  \App\Models\Like  $like
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Like $like)
+    public function update(Request $request, Post $post, Like $like)
     {
         //
     }
@@ -83,10 +95,11 @@ class LikeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param  \App\Models\Post  $post
      * @param  \App\Models\Like  $like
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Like $like)
+    public function destroy(Post $post, Like $like)
     {
         //
     }

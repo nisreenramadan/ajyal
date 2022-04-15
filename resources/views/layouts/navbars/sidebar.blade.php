@@ -38,7 +38,7 @@
             </li>
             <li class="nav-item{{ $activePage == 'Teachers' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.teachers.index') }}">
-                    <i class="material-icons">smart_display</i>
+                    <i class="material-icons">person</i>
                     <p>{{ __('Manage Teachers') }}</p>
                 </a>
             </li>
