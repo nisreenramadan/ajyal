@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('admin.categories.index', ['categories' => $categories]);
+        $categories=Category::all()->pluck('id','book_category');
+        return response()->json(['categories'=> $categories]);
+
     }
 
     /**
@@ -26,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-       return view('admin.categories.create');
+        //
     }
 
     /**
@@ -37,13 +39,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $validation = $request->validate([
-            'book_category'     => 'required|min:2',
-            'course_category'     => 'required|min:2',
-
-        ]);
-        $category= Category::create($validation);
-        return redirect()->route('admin.categories.index');
+        //
     }
 
     /**
@@ -52,9 +48,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show($id)
     {
-        return view('admin.categories.show', ['category'=> $category]);
+        $category=Category::find($id);
+        $books=Book::where('category_id',$id)->get();
+        return response()->json(['category'=> $category,'books'=> $books]);
     }
 
     /**
@@ -63,9 +61,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        return view('admin.categories.edit',['category'=> $category]);
+        //
     }
 
     /**
@@ -75,14 +73,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-         $request->validate([
-            'name'     => 'required|min:2',
-        ]);
-        $category->name = $request->name;
-        $category->save();
-        return redirect()->route('admin.categories.index');
+        //
     }
 
     /**
@@ -91,10 +84,8 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        $category->delete();
-
-        return redirect()->route('admin.categories.index');
+        //
     }
 }
