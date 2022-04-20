@@ -102,7 +102,7 @@
                                                 placeholder="{{ __('Category') }}" value="{{ old('category_id') }}"
                                                 required="true" aria-required="true">
                                                 @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    <option value="{{ $category->id }}">{{ $category->book_category }}</option>
                                                 @endforeach
                                             </select>
                                             @if ($errors->has('category_id'))

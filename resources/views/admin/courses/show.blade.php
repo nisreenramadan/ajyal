@@ -50,7 +50,7 @@
                                     <div class="col-md-6">
                                         <div class="alert alert-info">
                                             <span><strong>Category</strong> : <br>
-                                                {{ $course->category->name }}</span>
+                                                {{ $course->category->course_category }}</span>
                                         </div>
                                     </div>
                                 </div>

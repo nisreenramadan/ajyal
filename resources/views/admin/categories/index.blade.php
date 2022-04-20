@@ -25,10 +25,12 @@
                                                 Id
                                             </th>
                                             <th>
-                                               Name
+                                               Book Category
                                             </th>
-
-                                            <th class="text-right">
+                                            <th>
+                                                Course Category
+                                             </th>
+                                             <th class="text-right">
                                                 Actions
                                             </th>
                                         </tr>
@@ -40,8 +42,10 @@
                                                     {{ $category->id }}
                                                 </td>
                                                 <td>
-                                                    <a
-                                                        href="{{ route('admin.categories.show', $category) }}">{{ $category->name}}</a>
+                                                    {{ $category->book_category }}
+                                                </td>
+                                                <td>
+                                                    {{ $category->course_category }}
                                                 </td>
 
                                                 <td class="td-actions text-right">

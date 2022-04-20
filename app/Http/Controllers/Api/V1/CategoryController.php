@@ -50,7 +50,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category=Category::find($id);
+        // $category=Category::find($id);
+        $category=Category::where('id', $id)->pluck('id','book_category');
         $books=Book::where('category_id',$id)->get();
         return response()->json(['category'=> $category,'books'=> $books]);
     }

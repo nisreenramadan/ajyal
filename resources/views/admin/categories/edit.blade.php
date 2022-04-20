@@ -28,16 +28,31 @@
                                     </div>
                                 @endif
                                 <div class="row">
-                                    <label class="col-sm-2 col-form-label">{{ __('Name') }}</label>
+                                    <label class="col-sm-2 col-form-label">{{ __('Book Category') }}</label>
                                     <div class="col-sm-7">
-                                        <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                            <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                                name="name" id="input-name" type="text"
-                                                placeholder="{{ __('name') }}" value="{{ $category->name }}"
+                                        <div class="form-group{{ $errors->has('book_category') ? ' has-danger' : '' }}">
+                                            <input class="form-control{{ $errors->has('book_category') ? ' is-invalid' : '' }}"
+                                                name="book_category" id="input-book_category" type="text"
+                                                placeholder="{{ __('book_category') }}" value="{{ $category->book_category }}"
                                                 required="true" aria-required="true" />
-                                            @if ($errors->has('name'))
-                                                <span id="name" class="error text-danger"
-                                                    for="input-name">{{ $errors->first('name') }}</span>
+                                            @if ($errors->has('book_category'))
+                                                <span id="book_category" class="error text-danger"
+                                                    for="input-book_category">{{ $errors->first('book_category') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label">{{ __('Course Category') }}</label>
+                                    <div class="col-sm-7">
+                                        <div class="form-group{{ $errors->has('course_category') ? ' has-danger' : '' }}">
+                                            <input class="form-control{{ $errors->has('course_category') ? ' is-invalid' : '' }}"
+                                                name="course_category" id="input-course_category" type="text"
+                                                placeholder="{{ __('course_category') }}" value="{{ $category->course_category }}"
+                                                required="true" aria-required="true" />
+                                            @if ($errors->has('course_category'))
+                                                <span id="course_category" class="error text-danger"
+                                                    for="input-course_category">{{ $errors->first('course_category') }}</span>
                                             @endif
                                         </div>
                                     </div>

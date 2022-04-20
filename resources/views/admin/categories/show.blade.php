@@ -31,8 +31,16 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="alert alert-info">
-                                            <span><strong>Name</strong> : <br>
-                                                {{ $category->name }}</span>
+                                            <span><strong>Book Category</strong> : <br>
+                                                {{ $category->book_category }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="alert alert-info">
+                                            <span><strong>Course Category</strong> : <br>
+                                                {{ $category->course_category }}</span>
                                         </div>
                                     </div>
                                 </div>
