@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Models\Book;
-use App\Models\Category;
+use App\Models\Like;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class LikeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories=Category::all()->pluck('id','book_category');
-        return response()->json(['categories'=> $categories]);
-
+        //
     }
 
     /**
@@ -39,7 +37,18 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validation = $request->validate([
+            'post_id'   => 'required',
+            'student_id'   => 'required',
+        ]);
+
+        Like::create($validation);
+        // $like = new Like();
+        // $like->student()->associate($request->student());
+        // $post = Post::find($request->get('post_id'));
+        // $post->likes()->save($like);
+
+        return response(['message' => 'like was created']);
     }
 
     /**
@@ -50,10 +59,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        // $category=Category::find($id);
-        $category=Category::where('id', $id)->pluck('id','book_category');
-        $books=Book::where('category_id',$id)->get();
-        return response()->json(['category'=> $category,'books'=> $books]);
+        //
     }
 
     /**
