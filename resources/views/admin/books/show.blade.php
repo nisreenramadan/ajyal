@@ -52,7 +52,7 @@
                                     <div class="col-md-6">
                                         <div class="alert alert-info">
                                             <span><strong>Category</strong> : <br>
-                                                {{ $book->category->book_category }}</span>
+                                                {{ $book->category->name }}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-8">

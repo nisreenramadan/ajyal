@@ -7,6 +7,7 @@ use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class StudentController extends Controller
 {
@@ -28,7 +29,8 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('admin.students.create');
+        $roles = Role::all();
+        return view('admin.students.create', ['roles' => $roles]);
     }
 
     /**
@@ -43,7 +45,8 @@ class StudentController extends Controller
             'name'     => 'required|string|min:4|max:255',
             'email'    => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
-            'age'      => 'required'
+            'age'      => 'required',
+            'role_id'  => 'required|exists:roles,id',
         ]);
 
         $user = new User();
@@ -51,6 +54,10 @@ class StudentController extends Controller
         $user->email= $request->email;
         $user->password  = Hash::make($request->password);
         $user->save();
+
+
+       $role = Role::find($request->role_id);
+       $user->assignRole($role);
 
         $student = new Student();
         $student->age = $request->age;
@@ -78,11 +85,12 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student)
+    public function edit($id)
     {
-        return view('admin.students.edit',['student'=>$student]);
+        $student = Student::find($id);
+        $roles = Role::all();
+        return view('admin.students.edit', ['roles' => $roles, 'student' => $student]);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -93,10 +101,11 @@ class StudentController extends Controller
     public function update(Request $request,Student $student)
     {
         $request->validate([
-            'name'     => 'required|string|min:4|max:255',
-            'email'    => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
-            'age'          => 'required'
+            'name'         => 'required|string|min:4|max:255',
+            'email'        => 'required|string|email|max:255|unique:users',
+            'password'     => 'required|string|min:8',
+            'age'          => 'required',
+            'role_id'      => 'required|exists:roles,id',
         ]);
 
         $user= new user();
@@ -109,6 +118,9 @@ class StudentController extends Controller
         $student->age = $request->age;
         $student->user_id= $user->id;
         $student->save();
+
+        $role = Role::find($request->role_id);
+        $user->assignRole($role);
 
 
         return redirect()->route('admin.students.index');

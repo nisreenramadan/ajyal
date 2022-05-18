@@ -38,8 +38,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validation = $request->validate([
-            'book_category'     => 'required|min:2',
-            'course_category'     => 'required|min:2',
+            'name'     => 'required|min:2',
 
         ]);
         $category= Category::create($validation);

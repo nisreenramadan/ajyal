@@ -9,9 +9,6 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Teacher\LectureController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Student\PostCommentController;
-use App\Http\Controllers\Student\PostController as StudentPostController;
-use App\Http\Controllers\Student\PostLikeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -99,10 +96,3 @@ Route::group(['middleware' => 'auth', 'prefix' => 'teacher', 'as' => 'teacher.']
 
 });
 
-Route::group(['middleware' => 'auth', 'prefix' => 'student', 'as' => 'student.'], function () {
-    Route::resource('posts', StudentPostController::class);
-    Route::resource('posts.comments', PostCommentController::class);
-    Route::resource('posts.likes', PostLikeController::class);
-
-
-});

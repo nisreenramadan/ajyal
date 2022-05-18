@@ -108,6 +108,24 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="field">
+                                    <label class="label">Role</label>
+                                    <div class="control">
+                                        <div class="select">
+                                            <select name="role_id">
+                                                @foreach ($roles as $role)
+                                                    <option value="{{ $role->id }}"
+                                                        {{ $role->id == $teacher->role_id ? 'selected' : '' }}>
+                                                        {{ $role->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        @error('role_id')
+                                            <p class="help is-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
                                 <div class="card-footer ml-auto mr-auto">
                                 <button type="submit" class="btn btn-primary">{{ __('Edit Teacher') }}</button>
                             </div>

@@ -7,6 +7,7 @@ use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class TeacherController extends Controller
 {
@@ -28,7 +29,8 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        return view('admin.teachers.create');
+        $roles = Role::all();
+        return view('admin.teachers.create', ['roles' => $roles]);
     }
 
     /**
@@ -40,11 +42,12 @@ class TeacherController extends Controller
     public function store(Request $request)
     {
            $request->validate([
-            'name'     => 'required|string|min:4|max:255',
-            'email'    => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
+            'name'                      => 'required|string|min:4|max:255',
+            'email'                     => 'required|string|email|max:255|unique:users',
+            'password'                  => 'required|string|min:8',
             'scientific_grade'          => 'required|string|min:4',
             'scientific_certificate'    => 'required|string|min:4',
+            'role_id'                   => 'required|exists:roles,id',
         ]);
 
         $user = new User();
@@ -52,6 +55,9 @@ class TeacherController extends Controller
         $user->email= $request->email;
         $user->password  = Hash::make($request->password);
         $user->save();
+
+        $role = Role::find($request->role_id);
+        $user->assignRole($role);
 
         $teacher = new Teacher();
         $teacher->scientific_grade = $request->scientific_grade;
@@ -82,9 +88,11 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Teacher $teacher)
+    public function edit($id)
     {
-        return view('admin.teachers.edit',['teacher'=>$teacher]);
+        $teacher = Teacher::find($id);
+        $roles = Role::all();
+        return view('admin.teachers.edit', ['roles' => $roles, 'teacher' => $teacher]);
     }
 
     /**
@@ -94,14 +102,16 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Teacher $teacher)
+    public function update(Request $request, $id)
     {
+        $teacher = Teacher::find($id);
         $request->validate([
             'name'     => 'required|string|min:4|max:255',
             'email'    => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
             'scientific_grade'          => 'required|string|min:4',
             'scientific_certificate'    => 'required|string|min:4',
+            'role_id'                   => 'required|exists:roles,id'
         ]);
 
         $user= new user();
@@ -110,11 +120,14 @@ class TeacherController extends Controller
         $user->password  = Hash::make($request->password);
         $user->save();
 
-
         $teacher->scientific_grade = $request->scientific_grade;
         $teacher->scientific_certificate = $request->scientific_certificate;
         $teacher->user_id= $user->id;
         $teacher->save();
+
+
+        $role = Role::find($request->role_id);
+        $user->assignRole($role);
 
 
         return redirect()->route('admin.teachers.index');

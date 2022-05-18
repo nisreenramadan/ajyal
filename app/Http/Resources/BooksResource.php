@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CategoryBookResource extends JsonResource
+class BooksResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,9 +15,8 @@ class CategoryBookResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'books' => BooksResource::collection($this->books),
+            'title' => $this->title,
+            'pdf' => $this->getFirstMediaUrl('files'),
         ];
     }
 }

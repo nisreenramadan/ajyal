@@ -64,7 +64,7 @@
                                                     {{ $book->author}}
                                                 </td>
                                                 <td>
-                                                    {{ $book->category->book_category}}
+                                                    {{ $book->category->name}}
                                                 </td>
                                                 <td class="td-actions text-right">
                                                     <form action="{{ route('admin.books.destroy', $book) }}"

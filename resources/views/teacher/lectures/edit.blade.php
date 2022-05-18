@@ -95,6 +95,35 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label">{{ __('Videos') }}</label>
+                                    <div class="col-sm-7">
+                                        <div class="custom-file {{ $errors->has('videos') ? ' has-danger' : '' }}">
+                                            <input
+                                                class="form-control file{{ $errors->has('videos') ? ' is-invalid' : '' }}"
+                                                name="videos[]" id="input-videos" type="file" multiple="multiple"
+                                                placeholder="{{ __('Upload videos') }}" value="{{ $lecture->getMedia('videos') }}"
+                                                required="true" aria-required="true" />
+                                            @if ($errors->has('videos'))
+                                                <span id="videos-error" class="error text-danger"
+                                                    for="input-videos">{{ $errors->first('videos') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="alert alert-info">
+                                        <span><strong>Videos</strong> : <br>
+                                            <div class="row">
+                                                @foreach ($mediaItems as $mediaItem)
+                                                    <video type="video/mp4" width="500" autoplay controls>
+                                                        <source src="{{ $mediaItem->getUrl() }}">
+                                                    </video>
+                                                @endforeach
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-footer ml-auto mr-auto">
                                 <button type="submit" class="btn btn-primary">{{ __('Edit Lecture') }}</button>

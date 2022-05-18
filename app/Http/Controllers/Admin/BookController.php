@@ -79,7 +79,8 @@ class BookController extends Controller
     public function edit(Book $book)
     {
         $categories=Category::all();
-    return view('admin.books.edit',['book'=> $book,'categories' => $categories]);
+        $mediaItems = $book->getMedia('files');
+    return view('admin.books.edit',['book'=> $book,'categories' => $categories, 'mediaItems' => $mediaItems]);
     }
 
     /**
@@ -92,10 +93,10 @@ class BookController extends Controller
     public function update(Request $request, Book $book)
     {
         $request->validate([
-            'title'     => 'required|min:3',
+            'title'         => 'required|min:3',
             'description'   => 'required',
-            'link'   => 'required',
-            'author'   => 'required',
+            'link'          => 'required',
+            'author'        => 'required',
             'category_id'   => 'required',
         ]);
         $book->title = $request->title;
@@ -104,6 +105,13 @@ class BookController extends Controller
         $book->author = $request->author;
         $book->category_id = $request->category_id;
         $book->save();
+        if ($request->hasFile('files')) {
+            $book->clearMediaCollection('files');
+            $fileAdders = $book->addMultipleMediaFromRequest(['files'])
+                ->each(function ($fileAdder) {
+                    $fileAdder->toMediaCollection('files');
+                });
+        }
         return redirect()->route('admin.books.index');
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CategoryBookResource;
 use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -11,8 +12,9 @@ class CategoryBookController extends Controller
 {
     public function index()
     {
-        $categories=Category::all()->pluck('id','book_category');
-        return response()->json(['categories'=> $categories]);
+        $categories = Category::whereHas('books')->get();
+        // $categories=Category::all()->pluck('id','book_category');
+        return CategoryBookResource::collection($categories);
 
     }
 
@@ -40,14 +42,14 @@ class CategoryBookController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Category  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Category $id)
     {
-        $category=Category::where('id', $id)->pluck('id','book_category');
-        $books=Book::where('category_id',$id)->get();
-        return response()->json(['category'=> $category,'books'=> $books]);
+        // $category=Category::where('id', $id)->first();
+
+        return new CategoryBookResource($id);
     }
 
     /**

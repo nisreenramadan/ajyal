@@ -40,39 +40,21 @@
                                         </div>
                                     </div>
                                 @endif
-                                {{-- book category --}}
                                 <div class="row">
-                                    <label class="col-sm-2 col-form-label">{{ __('Book Category') }}</label>
+                                    <label class="col-sm-2 col-form-label">{{ __('Category Name') }}</label>
                                     <div class="col-sm-7">
-                                        <div class="form-group{{ $errors->has('book_category') ? ' has-danger' : '' }}">
-                                            <input class="form-control{{ $errors->has('book_category') ? ' is-invalid' : '' }}"
-                                               name="book_category" id="input-book_category" type="text"
-                                                placeholder="{{ __('book_category') }}" value="{{ old('book_category') }}"
+                                        <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                                            <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                               name="name" id="input-name" type="text"
+                                                placeholder="{{ __('name') }}" value="{{ old('name') }}"
                                                 required="true" aria-required="true" />
-                                            @if ($errors->has('book_category'))
-                                                <span id="book_category" class="error text-danger"
-                                                    for="input-book_category">{{ $errors->first('book_category') }}</span>
+                                            @if ($errors->has('name'))
+                                                <span id="name" class="error text-danger"
+                                                    for="input-name">{{ $errors->first('name') }}</span>
                                             @endif
                                         </div>
                                     </div>
                                 </div>
-                                {{-- course category --}}
-                                <div class="row">
-                                    <label class="col-sm-2 col-form-label">{{ __('course Category') }}</label>
-                                    <div class="col-sm-7">
-                                        <div class="form-group{{ $errors->has('course_category') ? ' has-danger' : '' }}">
-                                            <input class="form-control{{ $errors->has('course_category') ? ' is-invalid' : '' }}"
-                                               name="course_category" id="input-course_category" type="text"
-                                                placeholder="{{ __('course_category') }}" value="{{ old('course_category') }}"
-                                                required="true" aria-required="true" />
-                                            @if ($errors->has('course_category'))
-                                                <span id="course_category" class="error text-danger"
-                                                    for="input-course_category">{{ $errors->first('course_category') }}</span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-
                             <div class="card-footer ml-auto mr-auto">
                                 <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
                             </div>

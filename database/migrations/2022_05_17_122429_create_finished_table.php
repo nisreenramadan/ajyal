@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBadgesTable extends Migration
+class CreateFinishedTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateBadgesTable extends Migration
      */
     public function up()
     {
-        Schema::create('badges', function (Blueprint $table) {
+        Schema::create('finished_lectures', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->foreignId('student_id');
-            $table->foreignId('course_id');
-            $table->foreignId('book_id');
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ class CreateBadgesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('badges');
+        Schema::dropIfExists('finished');
     }
 }

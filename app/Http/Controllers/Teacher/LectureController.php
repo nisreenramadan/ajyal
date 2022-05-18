@@ -81,8 +81,8 @@ class LectureController extends Controller
     public function edit(Lecture $lecture)
     {
         $courses=Course::all();
-
-    return view('teacher.lectures.edit',['courses'=> $courses,'lecture' => $lecture]);
+        $mediaItems = $lecture->getMedia('videos');
+    return view('teacher.lectures.edit',['courses'=> $courses,'lecture' => $lecture,'mediaItems' => $mediaItems]);
     }
 
     /**
@@ -107,6 +107,13 @@ class LectureController extends Controller
         $lecture->course_id = $request->course_id;
         $lecture->sort = $request->sort;
         $lecture->save();
+        if ($request->hasFile('videos')) {
+            $lecture->clearMediaCollection('videos');
+            $fileAdders = $lecture->addMultipleMediaFromRequest(['videos'])
+                ->each(function ($fileAdder) {
+                    $fileAdder->toMediaCollection('videos');
+                });
+        }
         return redirect()->route('teacher.lectures.index');
     }
 

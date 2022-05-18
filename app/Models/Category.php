@@ -10,8 +10,7 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = [
-        'book_category',
-        'course_category'
+        'name'
     ];
 
 

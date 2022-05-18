@@ -102,7 +102,7 @@
                                                 placeholder="{{ __('Category') }}" value="{{ old('category_id') }}"
                                                 required="true" aria-required="true">
                                                 @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}">{{ $category->book_category }}</option>
+                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
                                                 @endforeach
                                             </select>
                                             @if ($errors->has('category_id'))
@@ -112,7 +112,29 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label">{{ __('Files') }}</label>
+                                    <div class="col-sm-7">
+                                        <div class="custom-file {{ $errors->has('files') ? ' has-danger' : '' }}">
+                                            <input
+                                                class="form-control file{{ $errors->has('files') ? ' is-invalid' : '' }}"
+                                                name="files[]" id="input-files" type="file" multiple="multiple"
+                                                placeholder="{{ __('Upload files') }}" value="{{ $book->getMedia('files') }}"
+                                                required="true" aria-required="true" />
+                                            @if ($errors->has('files'))
+                                                <span id="files-error" class="error text-danger"
+                                                    for="input-files">{{ $errors->first('files') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <span><strong>Files</strong> : <br>
+                                    <div class="row">
+                                        @foreach ($mediaItems as $mediaItem)
+                                            <iframe src="{{ $mediaItem->getUrl() }}" height="300" width="500"></iframe>
+                                        @endforeach
+                                    </div>
+                                </span>
                             </div>
                             <div class="card-footer ml-auto mr-auto">
                                 <button type="submit" class="btn btn-primary">{{ __('Edit Book') }}</button>

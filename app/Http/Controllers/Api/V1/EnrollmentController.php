@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\Enrollment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EnrollmentController extends Controller
 {
@@ -38,10 +39,10 @@ class EnrollmentController extends Controller
     {
         $validation = $request->validate([
             'course_id'   => 'required',
-            'student_id'   => 'required',
+            // 'student_id'   => 'required',
         ]);
 
-        Enrollment::create($validation);
+        Auth::user()->student->enrollments()->create($validation);
 
         return response(['message' => 'enrollment was created']);
     }

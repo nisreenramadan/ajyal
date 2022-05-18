@@ -25,11 +25,8 @@
                                                 Id
                                             </th>
                                             <th>
-                                               Book Category
+                                               Category Name
                                             </th>
-                                            <th>
-                                                Course Category
-                                             </th>
                                              <th class="text-right">
                                                 Actions
                                             </th>
@@ -42,12 +39,8 @@
                                                     {{ $category->id }}
                                                 </td>
                                                 <td>
-                                                    {{ $category->book_category }}
+                                                    {{ $category->name }}
                                                 </td>
-                                                <td>
-                                                    {{ $category->course_category }}
-                                                </td>
-
                                                 <td class="td-actions text-right">
                                                     <form action="{{ route('admin.categories.destroy', $category) }}"
                                                         method="post">

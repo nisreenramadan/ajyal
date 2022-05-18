@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Like;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LikeController extends Controller
 {
@@ -39,10 +40,10 @@ class LikeController extends Controller
     {
         $validation = $request->validate([
             'post_id'   => 'required',
-            'student_id'   => 'required',
+            // 'student_id'   => 'required',
         ]);
 
-        Like::create($validation);
+        Auth::user()->student->likes()->create($validation);
         // $like = new Like();
         // $like->student()->associate($request->student());
         // $post = Post::find($request->get('post_id'));

@@ -61,7 +61,7 @@
 
                                                 </td>
                                                 <td>
-                                                    {{ $course->category->course_category }}
+                                                    {{ $course->category->name }}
 
                                                 </td>
                                                 <td>

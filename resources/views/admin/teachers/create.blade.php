@@ -115,6 +115,25 @@
                                         </div>
                                     </div>
                                 </div>
+                                {{-- select  role --}}
+            <div class="position">
+                <div class="field">
+                    <label class="label inputtitle">Select Role</label>
+                    <div class="control">
+                        <div class="select">
+                            <select name="role_id">
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        @error('role_id')
+                            <p class="help is-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+
+
 
 
 

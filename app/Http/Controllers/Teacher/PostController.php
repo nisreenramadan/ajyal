@@ -112,7 +112,13 @@ class PostController extends Controller
         $post->content = $request->content;
         $post->save();
 
-        $mediaItems = $post->getMedia('images');
+        if ($request->hasFile('images')) {
+            $post->clearMediaCollection('images');
+            $fileAdders = $post->addMultipleMediaFromRequest(['images'])
+                ->each(function ($fileAdder) {
+                    $fileAdder->toMediaCollection('images');
+                });
+        }
         return redirect()->route('teacher.posts.index');
     }
 
