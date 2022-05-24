@@ -49,7 +49,7 @@ class CategoryBookController extends Controller
     {
         // $category=Category::where('id', $id)->first();
 
-        return new CategoryBookResource($id);
+        // return new CategoryBookResource($id);
     }
 
     /**

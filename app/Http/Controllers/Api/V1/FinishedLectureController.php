@@ -3,22 +3,19 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CategoryCourseResource;
-use App\Models\Book;
-use App\Models\Category;
-use App\Models\Course;
-use App\Models\Lecture;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class CategoryCourseController extends Controller
+class FinishedLectureController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $categories = Category::whereHas('courses')->get();
-        // $categories=Category::all()->pluck('id','course_category');
-        // return response()->json(['categories'=> $categories]);
-        return CategoryCourseResource::collection($categories);
-
+        //
     }
 
     /**
@@ -39,7 +36,13 @@ class CategoryCourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validation = $request->validate([
+            'lecture_id'   => 'required'
+        ]);
+
+        Auth::user()->student->finishedLecture()->create($validation);
+
+        return response(['message' => 'finished lecture']);
     }
 
     /**
@@ -50,11 +53,7 @@ class CategoryCourseController extends Controller
      */
     public function show($id)
     {
-        // $category=Category::find($id);
-        $category=Category::where('id', $id)->pluck('id','course_category');
-        $courses=Course::where('category_id',$id)->get();
-        $lectures=Lecture::where('course_id',$id)->get();
-        return response()->json(['category'=> $category,'courses'=> $courses,'lectures'=> $lectures]);
+        //
     }
 
     /**

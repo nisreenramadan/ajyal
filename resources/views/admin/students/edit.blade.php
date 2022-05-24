@@ -92,6 +92,48 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label">{{ __('Bio') }}</label>
+                                    <div class="col-sm-7">
+                                        <div class="form-group{{ $errors->has('bio') ? ' has-danger' : '' }}">
+                                            <textarea
+                                                class="form-control{{ $errors->has('bio') ? ' is-invalid' : '' }}"
+                                                name="bio" id="input-bio"
+                                                placeholder="{{ __('bio') }}"
+                                                required>{{ $student->bio }}</textarea>
+                                            @if ($errors->has('bio'))
+                                                <span id="bio-error" class="error text-danger"
+                                                    for="input-bio">{{ $errors->first('bio') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label">{{ __('Images') }}</label>
+                                    <div class="col-sm-7">
+                                        <div class="custom-file {{ $errors->has('images') ? ' has-danger' : '' }}">
+                                            <input
+                                                class="form-control file{{ $errors->has('images') ? ' is-invalid' : '' }}"
+                                                name="images[]" id="input-images" type="file" multiple="multiple"
+                                                placeholder="{{ __('Upload Images') }}" value="{{ $student->getMedia('images') }}"
+                                                required="true" aria-required="true" />
+                                            @if ($errors->has('images'))
+                                                <span id="images-error" class="error text-danger"
+                                                    for="input-images">{{ $errors->first('images') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <span><strong>Images</strong> : <br>
+                                    <div class="row">
+                                        @foreach ($mediaItems as $mediaItem)
+                                            <div class="col-md-4">
+                                                <img src="{{ $mediaItem->getUrl() }}" width="240px">
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </span>
+                            </div>
                                 <div class="field">
                                     <label class="label">Select Role</label>
                                     <div class="control">

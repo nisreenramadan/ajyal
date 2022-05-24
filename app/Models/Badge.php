@@ -23,4 +23,8 @@ class Badge extends Model
     {
         return $this->belongsTo(Course::class);
     }
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
+    }
 }

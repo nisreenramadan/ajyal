@@ -5,23 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Enrollment extends Model
+class FinishedLecture extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'course_id' ,
+        'lecture_id' ,
         'student_id'
     ];
 
-
+    public function lecture()
+    {
+        return $this->belongsTo(Lecture::class);
+    }
     public function student()
     {
         return $this->belongsTo(Student::class);
     }
-    public function course()
-    {
-        return $this->belongsTo(Course::class);
-    }
-
 }

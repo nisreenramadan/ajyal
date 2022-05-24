@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -39,8 +40,8 @@ class CommentController extends Controller
         $validated=$request->validate([
 
             'content'   => 'required',
-            'post_id'   => 'required',
-            'student_id'   => 'required',
+            'post_id'   => 'required'
+            // 'student_id'   => 'required',
 
         ]);
 
@@ -49,7 +50,7 @@ class CommentController extends Controller
         // $comment->student_id= $request->student_id;
         // $post = Post::find($request->get('post_id'));
         // $post->comments()->save($comment);
-        Comment::create($validated);
+        Auth::user()->student->comments()->create($validated);
 
         return response(['message' => 'comment was created']);
     }
@@ -94,10 +95,8 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy($id)
     {
-        $comment->delete();
-
-        return redirect()->route('student.posts.show');
+        return Comment::destroy($id);
     }
 }

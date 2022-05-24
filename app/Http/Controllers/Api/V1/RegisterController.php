@@ -22,10 +22,11 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'name'        => 'required|string|min:4|max:255',
+            'name'        => 'required|string|min:3|max:255',
             'email'       => 'required|string|email|max:255|unique:users',
             'password'    => 'required|string|min:8',
             'age'         => 'required',
+            'bio'         => 'required'
             // 'role_id'     => 'required|exists:roles,id',
         ]);
         $user = User::create([
@@ -37,8 +38,15 @@ class RegisterController extends Controller
         $student = Student::create([
             'user_id'   => $user->id,
             'age'       => $request->age,
+            'bio'       => $request->bio
 
         ]);
+        if ($request->hasFile('images')) {
+            $fileAdders = $student->addMultipleMediaFromRequest(['images'])
+                ->each(function ($fileAdder) {
+                        $fileAdder->toMediaCollection('images');
+                    });
+                }
 
         // $role = Role::find($request->role_id);
 

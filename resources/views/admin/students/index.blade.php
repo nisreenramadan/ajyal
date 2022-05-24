@@ -30,11 +30,12 @@
                                             <th>
                                                 Email
                                             </th>
-
                                             <th>
                                                 Age
                                             </th>
-
+                                            <th>
+                                                Bio
+                                            </th>
                                             <th class="text-right">
                                                 Actions
                                             </th>
@@ -47,15 +48,16 @@
                                                     {{ $student->id }}
                                                 </td>
                                                 <td>
-
-                                                        {{ $student->user->name}}
+                                                    {{ $student->user->name}}
                                                 </td>
                                                 <td>
                                                     {{ $student->user->email }}
                                                 </td>
-
                                                 <td>
                                                     {{ $student->age }}
+                                                </td>
+                                                <td>
+                                                    {{ $student->bio }}
                                                 </td>
 
                                                 <td class="td-actions text-right">

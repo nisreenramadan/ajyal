@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CourseResource extends JsonResource
+class CommentsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,14 +15,10 @@ class CourseResource extends JsonResource
     public function toArray($request)
     {
         return [
-            // ...
-            'finshed_at' => $this->lectures()->latest()->first()->finshed_at,
+            'id' => $this->id,
+            'content' => $this->content,
+            'post_id'=> $this->post_id,
+            'student_id'=>$this->student->user->name
         ];
-
-        // student badge controller
-        auth()->user()->badges
-
-        if ($lecture->isLastLecture())
-        \Event::fire(new CourseFinished($course))
     }
 }

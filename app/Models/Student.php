@@ -5,15 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-
-class Student extends Model
+class Student extends Model implements HasMedia
 {
-    use HasFactory;
+    use HasFactory , InteractsWithMedia;
 
     protected $fillable = [
         'user_id',
         'age',
+        'bio'
     ];
 
     public function user()
@@ -36,9 +38,18 @@ class Student extends Model
     {
         return $this->belongsToMany(Course::class);
     }
+    public function books()
+    {
+        return $this->belongsToMany(Book::class);
+    }
     public function enrollments()
      {
         return $this->hasMany(Enrollment::class);
      }
+    public function finishedLecture()
+    {
+        return $this->hasOne(FinishedLecture::class);
+    }
+
 
 }

@@ -42,10 +42,11 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'     => 'required|string|min:4|max:255',
+            'name'     => 'required|string|min:3|max:255',
             'email'    => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
             'age'      => 'required',
+            'bio'      => 'required',
             'role_id'  => 'required|exists:roles,id',
         ]);
 
@@ -61,8 +62,15 @@ class StudentController extends Controller
 
         $student = new Student();
         $student->age = $request->age;
+        $student->bio = $request->bio;
         $student->user_id= $user->id;
         $student->save();
+        if ($request->hasFile('images')) {
+            $fileAdders = $student->addMultipleMediaFromRequest(['images'])
+                ->each(function ($fileAdder) {
+                        $fileAdder->toMediaCollection('images');
+                    });
+                }
 
 
         return redirect()->route('admin.students.index');
@@ -76,7 +84,8 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        return view('admin.students.show',['student'=>$student]);
+        $mediaItems = $student->getMedia('images');
+        return view('admin.students.show',['student'=>$student , 'mediaItems' => $mediaItems]);
     }
 
     /**
@@ -89,7 +98,8 @@ class StudentController extends Controller
     {
         $student = Student::find($id);
         $roles = Role::all();
-        return view('admin.students.edit', ['roles' => $roles, 'student' => $student]);
+        $mediaItems = $student->getMedia('images');
+        return view('admin.students.edit', ['roles' => $roles, 'student' => $student ,  'mediaItems' => $mediaItems]);
     }
     /**
      * Update the specified resource in storage.
@@ -101,10 +111,11 @@ class StudentController extends Controller
     public function update(Request $request,Student $student)
     {
         $request->validate([
-            'name'         => 'required|string|min:4|max:255',
+            'name'         => 'required|string|min:3|max:255',
             'email'        => 'required|string|email|max:255|unique:users',
             'password'     => 'required|string|min:8',
             'age'          => 'required',
+            'bio'          => 'required',
             'role_id'      => 'required|exists:roles,id',
         ]);
 
@@ -116,8 +127,16 @@ class StudentController extends Controller
 
 
         $student->age = $request->age;
+        $student->bio = $request->bio;
         $student->user_id= $user->id;
         $student->save();
+        if ($request->hasFile('images')) {
+            $student->clearMediaCollection('images');
+            $fileAdders = $student->addMultipleMediaFromRequest(['images'])
+                ->each(function ($fileAdder) {
+                    $fileAdder->toMediaCollection('images');
+                });
+        }
 
         $role = Role::find($request->role_id);
         $user->assignRole($role);

@@ -54,28 +54,5 @@ class User extends Authenticatable
         return $this->hasOne(Student::class);
     }
 
-    // public function posts()
-    // {
-    //     return $this->hasMany(Post::class);
-    // }
 
-    // public function likes()
-    // {
-    //     return $this->hasMany(Like::class);
-    // }
-
-    // public function badges()
-    // {
-    //     return $this->belongsToMany(Badge::class);
-    // }`
-
-    // public function enrollments()
-    // {
-    //     return $this->hasMany(Enrollment::class);
-    // }
-
-    // public function courses()
-    // {
-    //     return $this->hasMany(Course::class);
-    // }
 }

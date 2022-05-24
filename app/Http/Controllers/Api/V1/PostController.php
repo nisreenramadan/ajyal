@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PostResource;
 use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Post;
@@ -17,8 +18,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
-        return response()->json(['posts'=> $posts]);
+        // $posts = Post::all();
+        // return response()->json(['posts'=> $posts]);
+        $posts = Post::get();
+        return PostResource::collection($posts);
     }
 
     /**
@@ -50,10 +53,10 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post=Post::find($id);
-        $comments=Comment::where('post_id',$id)->get();
-        $likes=Like::where('post_id',$id)->get();
-        return response()->json(['post'=> $post,'comments'=> $comments,'likes'=> $likes]);
+        // $post=Post::find($id);
+        // $comments=Comment::where('post_id',$id)->get();
+        // $likes=Like::where('post_id',$id)->get();
+        // return response()->json(['post'=> $post,'comments'=> $comments,'likes'=> $likes]);
     }
 
     /**

@@ -41,11 +41,29 @@
                                                 {{ $student->user->email }}</span>
                                         </div>
                                     </div>
-
                                     <div class="col-md-6">
                                         <div class="alert alert-info">
                                             <span><strong>Age</strong> : <br>
                                                 {{ $student->age }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="alert alert-info">
+                                            <span><strong>Bio</strong> : <br>
+                                                {{ $student->bio }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="alert alert-info">
+                                            <span><strong>Images</strong> : <br>
+                                                <div class="row">
+                                                    @foreach ($mediaItems as $mediaItem)
+                                                        <div class="col-md-4">
+                                                            <img src="{{ $mediaItem->getUrl() }}"  width="100">
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>

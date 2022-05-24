@@ -17,6 +17,7 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('age');
+            $table->string('bio');
             $table->timestamps();
         });
     }

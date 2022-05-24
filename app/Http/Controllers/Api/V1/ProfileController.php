@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProfileResource;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -15,6 +16,7 @@ class ProfileController extends Controller
     {
         $user = User::find($id);
         return response()->json(["user" => $user]);
+        // return new ProfileResource($request->user());
     }
 
     public function update(Request $request)
@@ -24,7 +26,8 @@ class ProfileController extends Controller
             'email'          => 'required|string|email|max:255|unique:users,email,' . Auth::id(),
             //  Rule::unique('users')->ignore(Auth::user()->id),
             'password'       => 'required|string|min:8',
-            'age'            => 'required'
+            'age'            => 'required',
+            'bio'            => 'required'
         ]);
 
         /* App\Model\User $user */
@@ -39,7 +42,9 @@ class ProfileController extends Controller
         $student = $user->student;
         $student->update([
             'age'       => $request->age,
-            'user_id'     => Auth::id(),
+            'bio'       => $request->bio,
+            'user_id'   => Auth::id(),
+            'images'    =>$request->getFirstMediaUrl('images'),
         ]);
         return [
             'message' => 'User information updated Successfully'

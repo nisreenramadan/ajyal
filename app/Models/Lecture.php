@@ -22,4 +22,9 @@ class Lecture extends Model implements HasMedia
     {
         return $this->belongsTo(Course::class);
     }
+    public function finishedLecture()
+    {
+        return $this->hasOne(FinishedLecture::class);
+    }
+
 }

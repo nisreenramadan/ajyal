@@ -16,7 +16,7 @@ class CreateFinishedLecturesTable extends Migration
         Schema::create('finished_lectures', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id');
-            $table->foreignId('course_id');
+            $table->foreignId('lecture_id');
             $table->timestamps();
         });
     }

@@ -25,8 +25,8 @@ class Book extends Model implements HasMedia
         return $this->belongsTo(Category::class);
     }
 
-    // public function authors()
-    // {
-    //     return $this->belongsToMany(Author::class);
-    // }
+    public function badges()
+    {
+        return $this->hasMany(Badge::class);
+    }
 }
