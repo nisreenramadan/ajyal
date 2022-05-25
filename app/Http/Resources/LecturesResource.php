@@ -20,7 +20,7 @@ class LecturesResource extends JsonResource
             'sort'=>$this->sort,
             'description' => $this->description,
             'video' => $this->getFirstMediaUrl('videos'),
-            // 'finished_lecture' => FinishedLectureResource::collection($this->finishedLecture)
+            // 'finished_lecture' => FinishedLectureResource::collection($this->finishedLectures)
         ];
     }
 }

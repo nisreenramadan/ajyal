@@ -40,7 +40,7 @@ class FinishedLectureController extends Controller
             'lecture_id'   => 'required'
         ]);
 
-        Auth::user()->student->finishedLecture()->create($validation);
+        Auth::user()->student->finishedLectures()->create($validation);
 
         return response(['message' => 'finished lecture']);
     }
