@@ -15,8 +15,6 @@ class FinishedLectureResource extends JsonResource
     public function toArray($request)
     {
         return [
-
-            'lecture_id'=> $this->lecture_id,
             'student_id'=>$this->student->user->name
         ];
     }

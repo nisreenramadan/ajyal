@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Models\Badge;
+use App\Models\Lecture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,12 +39,22 @@ class FinishedLectureController extends Controller
     public function store(Request $request)
     {
         $validation = $request->validate([
-            'lecture_id'   => 'required'
+            'lecture_id'   => 'required|exists:lectures,id'
         ]);
 
         Auth::user()->student->finishedLectures()->create($validation);
+        $lecture = Lecture::findOrFail($request->lecture_id);
+        $course = $lecture->course;
+        $last_lecture_sort = $course->lectures()->max('sort');
+        if ($last_lecture_sort == $lecture->sort) {
+            Badge::create([
+                'name' => 'Course Finished',
+                'course_id' => $course->id,
+                'student_id' => Auth::id(),
+            ]);
+        }
 
-        return response(['message' => 'finished lecture']);
+        return response(['message' => 'finished course']);
     }
 
     /**

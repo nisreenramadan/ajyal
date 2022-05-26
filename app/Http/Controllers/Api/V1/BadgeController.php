@@ -9,21 +9,15 @@ use Illuminate\Support\Facades\Auth;
 class BadgeController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
+     * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function index()
     {
-        $validation = $request->validate([
-            'name'   => 'required',
-            'course_id' => 'required',
-            'book_id' => 'required'
-        ]);
-
-        Auth::user()->student->badges()->create($validation);
-
-        return response(['message' => 'badge was created']);
+        return [
+            'courses_count' => Auth::user()->student->badges()->whereNull('book_id')->get(),
+            'books_count' => Auth::user()->student->badges()->whereNull('course_id')->get(),
+        ];
     }
 }

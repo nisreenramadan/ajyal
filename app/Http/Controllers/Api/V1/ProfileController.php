@@ -12,11 +12,11 @@ use Spatie\Permission\Models\Role;
 
 class ProfileController extends Controller
 {
-    public function show($id)
+    public function show()
     {
-        $user = User::find($id);
-        return response()->json(["user" => $user]);
-        // return new ProfileResource($request->user());
+        // $user = User::find($id);
+        // return response()->json(["user" => $user]);
+        return new ProfileResource(Auth::user());
     }
 
     public function update(Request $request)
@@ -30,7 +30,7 @@ class ProfileController extends Controller
             'bio'            => 'required'
         ]);
 
-        /* App\Model\User $user */
+        /* \App\Model\User $user */
         $user = Auth::user();
         $user->update([
             'name'      => $request->name,

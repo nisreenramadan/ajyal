@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProfileResource;
 use App\Models\User;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -54,7 +55,7 @@ class RegisterController extends Controller
 
      $token = $user->createToken('myapptoken')->plainTextToken;
      $response = [
-        'user'    => $user,
+        'user'    => new ProfileResource($user),
         'token'   => $token,
         'student' => $student,
     ];

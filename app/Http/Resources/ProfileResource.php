@@ -17,7 +17,7 @@ class ProfileResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            // 'student' => StudentResource::collection($this->student),
+            'student' => new StudentResource($this->student),
         ];
     }
 }

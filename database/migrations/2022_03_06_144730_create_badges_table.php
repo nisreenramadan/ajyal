@@ -17,8 +17,8 @@ class CreateBadgesTable extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('student_id');
-            $table->foreignId('course_id');
-            $table->foreignId('book_id');
+            $table->foreignId('course_id')->nullable();
+            $table->foreignId('book_id')->nullable();
             $table->timestamps();
         });
     }
