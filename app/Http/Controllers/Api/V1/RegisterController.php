@@ -51,7 +51,7 @@ class RegisterController extends Controller
 
         // $role = Role::find($request->role_id);
 
-        $user->assignRole('student');
+        $user->assignRole('Student');
 
      $token = $user->createToken('myapptoken')->plainTextToken;
      $response = [
