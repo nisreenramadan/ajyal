@@ -17,7 +17,9 @@ class LikesResource extends JsonResource
         return [
             'id' => $this->id,
             'post_id'=> $this->post_id,
-            'student_id'=>$this->student->user->name
+            'student_id'=>$this->student_id
+            // 'student_id'=>$this->student->user->name
+
         ];
     }
 }

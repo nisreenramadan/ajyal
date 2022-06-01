@@ -94,6 +94,6 @@ class LikeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Like::destroy($id);
     }
 }

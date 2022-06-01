@@ -15,8 +15,8 @@ class BooksResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'name' => $this->name,
             'title' => $this->title,
+            'description' => $this->description,
             'author'=> $this->author,
             'link' => $this->link,
             'pdf' => $this->getFirstMediaUrl('files'),

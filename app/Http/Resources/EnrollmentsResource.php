@@ -17,7 +17,8 @@ class EnrollmentsResource extends JsonResource
         return [
             'id' => $this->id,
             'course_id'=> $this->course_id,
-            'student_id'=>$this->student->user->name
+            'student_id'=>$this->student_id
+            // 'student_id'=>$this->student->user->name
         ];
     }
 }

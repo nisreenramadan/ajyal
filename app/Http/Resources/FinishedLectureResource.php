@@ -15,7 +15,8 @@ class FinishedLectureResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'student_id'=>$this->student->user->name
+            'student_id'=>$this->student_id
+            // 'student_id'=>$this->student->user->name
         ];
     }
 }
