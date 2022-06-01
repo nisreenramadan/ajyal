@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
   // create like
   Route::post('likes',[LikeController::class,'store']);
+  Route::delete('likes/{id}',[LikeController::class,'destroy']);
 
   // create comment
   Route::post('comments',[CommentController::class,'store']);
@@ -51,6 +52,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
   // create enrollment
   Route::post('enrollments',[EnrollmentController::class,'store']);
+  Route::delete('enrollments/{id}',[EnrollmentController::class,'destroy']);
 
   // logout
   Route::post('logout', [RegisterController::class, 'logout']);
