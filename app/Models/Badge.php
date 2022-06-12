@@ -12,6 +12,7 @@ class Badge extends Model
     protected $fillable = [
         'name' ,
         'course_id',
+        'book_id',
         'student_id',
     ];
 

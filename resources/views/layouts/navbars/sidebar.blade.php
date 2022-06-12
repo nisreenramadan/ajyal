@@ -60,6 +60,12 @@
                     <p>{{ __('Manage Students') }}</p>
                 </a>
             </li>
+            <li class="nav-item{{ $activePage == 'Badge' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.badges.index') }}">
+                    <i class="material-icons">person</i>
+                    <p>{{ __('Manage Badges') }}</p>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

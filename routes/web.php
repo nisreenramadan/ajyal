@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BadgeBookController;
 use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Teacher\PostController;
 use App\Http\Controllers\Admin\UserController;
@@ -86,6 +87,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.'], fu
     Route::resource('teachers', TeacherController::class);
     Route::resource('books', BookController::class);
     Route::resource('students', StudentController::class);
+    Route::resource('badges', BadgeBookController::class);
 
 
 });

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Badge;
-use App\Models\Lecture;
+use App\Models\Book;
+use App\Models\Student;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class FinishedLectureController extends Controller
+class BadgeBookController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,8 @@ class FinishedLectureController extends Controller
      */
     public function index()
     {
-        //
+        $badges=Badge::all();
+      return view('admin.badges.index', ['badges' => $badges]);
     }
 
     /**
@@ -27,7 +28,9 @@ class FinishedLectureController extends Controller
      */
     public function create()
     {
-        //
+        $books=Book::all();
+        $students=Student::all();
+        return view('admin.badges.create',['books' => $books,'students' => $students]);
     }
 
     /**
@@ -39,22 +42,14 @@ class FinishedLectureController extends Controller
     public function store(Request $request)
     {
         $validation = $request->validate([
-            'lecture_id'   => 'required|exists:lectures,id'
+            'name'     => 'required|min:3',
+            'book_id'   => 'required',
+            'student_id'   => 'required',
         ]);
+         $badge = new Badge();
+        $badge= Badge::create($validation);
 
-        Auth::user()->student->finishedLectures()->create($validation);
-        $lecture = Lecture::findOrFail($request->lecture_id);
-        $course = $lecture->course;
-        $last_lecture_sort = $course->lectures()->max('sort');
-        if ($last_lecture_sort == $lecture->sort) {
-            Badge::create([
-                'name' => 'Course Finished',
-                'course_id' => $course->id,
-                'student_id' => Auth::user()->student->id,
-            ]);
-        }
-
-        return response(['message' => 'finished course']);
+        return redirect()->route('admin.badges.index');
     }
 
     /**

@@ -11,7 +11,9 @@ use App\Http\Controllers\Api\V1\LoginController;
 use App\Http\Controllers\Api\V1\PostController;
 use App\Http\Controllers\Api\V1\ProfileController;
 use App\Http\Controllers\Api\V1\RegisterController;
+use App\Http\Resources\StudentResource;
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -59,7 +61,16 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
   // max students badges
   Route::get('top-ten', function () {
-    return Student::withCount('badges')->orderByDesc('badges_count')->limit(3)->get();
+    return [
+        // Student::withCount('badges')->whereNull('book_id')->orderByDesc('badges_count')->limit(3)->get(),
+        // Student::withCount('badges')->orderByDesc('badges_count')->limit(3)->get()
+        Student::with('user')->withCount(['badges' => function($query){
+                       $query->whereNull('course_id');
+                                                        }])->orderByDesc('badges_count')->limit(3)->get(),
+        Student::withCount(['badges' => function($query){
+                        $query->whereNull('book_id');
+                                                         }])->orderByDesc('badges_count')->limit(3)->get()
+        ];
   });
 
    // create finished lecture
