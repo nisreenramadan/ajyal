@@ -67,7 +67,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Student::with('user')->withCount(['badges' => function($query){
                        $query->whereNull('course_id');
                                                         }])->orderByDesc('badges_count')->limit(3)->get(),
-        Student::withCount(['badges' => function($query){
+        Student::with('user')->withCount(['badges' => function($query){
                         $query->whereNull('book_id');
                                                          }])->orderByDesc('badges_count')->limit(3)->get()
         ];
